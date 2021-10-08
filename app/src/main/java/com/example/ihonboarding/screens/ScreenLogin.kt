@@ -28,13 +28,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ihonboarding.R
 import com.example.ihonboarding.components.CustomButton
-import com.example.ihonboarding.ui.theme.IHOnboardingProjectTheme
+import com.example.ihonboarding.ui.theme.IHOnboardingTheme
 
 class ScreenLogin : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            IHOnboardingProjectTheme {
+            IHOnboardingTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     LoginPage()
@@ -115,7 +115,7 @@ fun LoginPage() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview2() {
-    IHOnboardingProjectTheme {
+    IHOnboardingTheme {
         LoginPage()
     }
 }

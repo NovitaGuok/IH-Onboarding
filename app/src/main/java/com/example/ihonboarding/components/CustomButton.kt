@@ -11,13 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.ihonboarding.ui.theme.IHOnboardingProjectTheme
+import com.example.ihonboarding.ui.theme.IHOnboardingTheme
 
 class CustomButton : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            IHOnboardingProjectTheme {
+            IHOnboardingTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     CustomButton("Android")
@@ -44,7 +44,7 @@ fun CustomButton(btnText: String) {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview3() {
-    IHOnboardingProjectTheme {
+    IHOnboardingTheme {
         CustomButton("Android")
     }
 }
