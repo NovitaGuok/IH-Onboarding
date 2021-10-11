@@ -24,7 +24,7 @@ class ScreenHome : ComponentActivity() {
         setContent {
             IHOnboardingTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
+                Surface(color = MaterialTheme.colors.secondary) {
                     HomePage()
                 }
             }
@@ -34,7 +34,7 @@ class ScreenHome : ComponentActivity() {
 
 @Composable
 fun HomePage() {
-    LazyColumn() {
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
             Column() {
                 Profile(
@@ -75,6 +75,8 @@ fun HomePage() {
 @Composable
 fun DefaultPreview4() {
     IHOnboardingTheme {
-        HomePage()
+        Surface(color = MaterialTheme.colors.secondary) {
+            HomePage()
+        }
     }
 }
