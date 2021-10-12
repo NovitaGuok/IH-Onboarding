@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">IH Onboarding</string>
+    <string name="my_name">Novita</string>
+    <string name="my_motto">It\'s never too old to learn</string>
+    <string name="my_url">https://www.linkedin.com/in/novitaguok/</string>
+    <string name="title_card">John Stones Reborn When City Get Rid of Manchester United</string>
+    <string name="time_card">7 Jan 21</string>
 </resources>
