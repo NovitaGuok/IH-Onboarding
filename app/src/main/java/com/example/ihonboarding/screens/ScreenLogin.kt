@@ -1,8 +1,5 @@
 package com.example.ihonboarding.screens
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -29,20 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.example.ihonboarding.R
 import com.example.ihonboarding.components.CustomButton
 import com.example.ihonboarding.ui.theme.IHOnboardingTheme
-
-class ScreenLogin : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            IHOnboardingTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    LoginPage()
-                }
-            }
-        }
-    }
-}
+import com.example.ihonboarding.ui.theme.Monsoon
 
 @Composable
 fun LoginPage() {
@@ -57,7 +42,7 @@ fun LoginPage() {
 
         /** Title */
         Text(
-            text = "TimeRomanNews.",
+            text = stringResource(R.string.title_login),
             modifier = Modifier.padding(0.dp, 64.dp, 0.dp, 96.dp),
             style = TextStyle(
                 fontFamily = FontFamily(Font(R.font.times_new_roman)),
@@ -70,7 +55,7 @@ fun LoginPage() {
         TextField(
             value = email.value,
             onValueChange = { email.value = it.trim() },
-            label = { Text("Email", color = Color(0xFF888888)) },
+            label = { Text(stringResource(R.string.label_email), color = Color(0xFF888888)) },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
                 focusedIndicatorColor = Color(0xFF888888),
@@ -88,11 +73,11 @@ fun LoginPage() {
         TextField(
             value = password.value,
             onValueChange = { password.value = it.trim() },
-            label = { Text("Password", color = Color(0xFF888888)) },
+            label = { Text(stringResource(R.string.label_password), color = Monsoon) },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
-                focusedIndicatorColor = Color(0xFF888888),
-                unfocusedIndicatorColor = Color(0xFF888888),
+                focusedIndicatorColor = Monsoon,
+                unfocusedIndicatorColor = Monsoon,
             ),
             modifier = modifier,
             visualTransformation = if (passwordVisibility.value) VisualTransformation.None else PasswordVisualTransformation(),
@@ -108,13 +93,13 @@ fun LoginPage() {
         Spacer(modifier = Modifier.padding(vertical = 24.dp))
 
         /** Button */
-        CustomButton(btnText = "Login")
+        CustomButton(btnText = stringResource(R.string.btn_login))
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview2() {
+fun LoginPagePreview() {
     IHOnboardingTheme {
         LoginPage()
     }

@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.ihonboarding.R
 import com.example.ihonboarding.ui.theme.IHOnboardingTheme
 
 class CustomButton : ComponentActivity() {
@@ -20,7 +22,7 @@ class CustomButton : ComponentActivity() {
             IHOnboardingTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    CustomButton("Android")
+                    CustomButton(stringResource(R.string.sample))
                 }
             }
         }
@@ -35,7 +37,9 @@ fun CustomButton(btnText: String) {
             backgroundColor = MaterialTheme.colors.primaryVariant
         ),
         contentPadding = PaddingValues(16.dp),
-        modifier = Modifier.fillMaxWidth().padding(0.dp, 4.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(0.dp, 4.dp)
     ) {
         Text(btnText)
     }
@@ -43,7 +47,7 @@ fun CustomButton(btnText: String) {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview3() {
+fun CustomButtonPreview() {
     IHOnboardingTheme {
         CustomButton("Android")
     }
