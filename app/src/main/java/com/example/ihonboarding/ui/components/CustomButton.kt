@@ -1,4 +1,4 @@
-package com.example.ihonboarding.components
+package com.example.ihonboarding.ui.components
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

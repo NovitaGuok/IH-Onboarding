@@ -1,4 +1,4 @@
-package com.example.ihonboarding.screens
+package com.example.ihonboarding.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ihonboarding.R
-import com.example.ihonboarding.components.CustomButton
+import com.example.ihonboarding.ui.components.CustomButton
 import com.example.ihonboarding.ui.theme.IHOnboardingTheme
 import com.example.ihonboarding.ui.theme.Monsoon
 
