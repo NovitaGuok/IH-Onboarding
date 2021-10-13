@@ -28,5 +28,4 @@
     *** Companion;
 }
 -keepclasseswithmembers class com.example.ihonboarding.** { # <-- change package name to your app's
-    kotlinx.serialization.KSerializer serializer(...);
-}
+-keep,includedescriptorclasses class com.yourcompany.yourpackage.**$$serializer { *; } # <-- change package name to your app's
