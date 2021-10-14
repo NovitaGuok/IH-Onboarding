@@ -20,12 +20,37 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-# Kotlinx Serialization
+# Kotlin Serialization
 -keepattributes *Annotation*, InnerClasses
--dontnote kotlinx.serialization.SerializationKt
--keep,includedescriptorclasses class com.example.ihonboarding.**$$serializer { *; } # <-- change package name to your app's
--keepclassmembers class com.example.ihonboarding.** { # <-- change package name to your app's
+-dontnote kotlinx.serialization.AnnotationsKt # core serialization annotations
+
+# kotlinx-serialization-json specific. Add this if you have java.lang.NoClassDefFoundError kotlinx.serialization.json.JsonObjectSerializer
+-keepclassmembers class kotlinx.serialization.json.** {
     *** Companion;
 }
--keepclasseswithmembers class com.example.ihonboarding.** { # <-- change package name to your app's
--keep,includedescriptorclasses class com.yourcompany.yourpackage.**$$serializer { *; } # <-- change package name to your app's
+-keepclasseswithmembers class kotlinx.serialization.json.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+# Application rules
+
+# Change here com.yourcompany.yourpackage
+-keepclassmembers @kotlinx.serialization.Serializable class com.example.ihonboarding.** {
+    # lookup for plugin generated serializable classes
+    *** Companion;
+    # lookup for serializable objects
+    *** INSTANCE;
+    kotlinx.serialization.KSerializer serializer(...);
+}
+# lookup for plugin generated serializable classes
+-if @kotlinx.serialization.Serializable class com.example.ihonboarding.**
+-keepclassmembers class com.example.ihonboarding.<1>$Companion {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+# Serialization supports named companions but for such classes it is necessary to add an additional rule.
+# This rule keeps serializer and serializable class from obfuscation. Therefore, it is recommended not to use wildcards in it, but to write rules for each such class.
+#noinspection ShrinkerUnresolvedReference
+-keep class com.example.ihonboarding.SerializableClassWithNamedCompanion$$serializer {
+    *** INSTANCE;
+}
