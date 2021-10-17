@@ -1,4 +1,4 @@
-package com.example.ihonboarding.ui.components
+package com.example.ihonboarding.presentation.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Reaction(desc: String) {
-
     val bottomTextStyle = TextStyle(color = Color(0xFF979797), fontWeight = FontWeight.W600)
     val iconTint = Color(0xFF979797)
     val iconSize = 16.dp

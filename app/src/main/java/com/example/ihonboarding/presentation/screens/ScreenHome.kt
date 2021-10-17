@@ -1,4 +1,4 @@
-package com.example.ihonboarding.ui.screens
+package com.example.ihonboarding.presentation.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,10 +12,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ihonboarding.R
-import com.example.ihonboarding.ui.components.CardTopic
-import com.example.ihonboarding.ui.components.Profile
-import com.example.ihonboarding.ui.theme.DarkJungleGreen
-import com.example.ihonboarding.ui.theme.IHOnboardingTheme
+import com.example.ihonboarding.presentation.components.CardTopic
+import com.example.ihonboarding.presentation.components.Profile
+import com.example.ihonboarding.presentation.theme.DarkJungleGreen
+import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 
 @Composable
 fun HomePage() {

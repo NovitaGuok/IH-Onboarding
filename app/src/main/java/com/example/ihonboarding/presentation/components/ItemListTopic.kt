@@ -1,4 +1,4 @@
-package com.example.ihonboarding.ui.components
+package com.example.ihonboarding.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ihonboarding.R
-import com.example.ihonboarding.ui.theme.IHOnboardingTheme
+import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 
 @Composable
 fun CardTopic(title: String, publishTime: String) {
