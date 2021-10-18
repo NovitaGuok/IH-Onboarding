@@ -10,4 +10,6 @@
     <string name="desc_likes">likes</string>
     <string name="desc_dislikes">dislikes</string>
     <string name="desc_profile_pic">profile picture</string>
+    <string name="title_home">Hot Topics</string>
+    <string name="subtitle_home">See What\'s Happening in the World</string>
 </resources>
