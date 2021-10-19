@@ -6,26 +6,26 @@ import com.google.gson.annotations.SerializedName
 
 data class NewsDto (
     @SerializedName("id")
-    val id: Int? = null,
+    var id: Int? = null,
 
     @SerializedName("channel")
-    val channel: Channel? = null,
+    var channel: Channel? = null,
 
     @SerializedName("counter")
-    val counter: Counter? = null,
+    var counter: Counter? = null,
 
     @SerializedName("cover_image")
-    val cover_image: String? = null,
+    var cover_image: String? = null,
 
     @SerializedName("created_at")
-    val created_at: String? = null,
+    var created_at: String? = null,
 
     @SerializedName("nsfw")
-    val nsfw: Boolean? = null,
+    var nsfw: Boolean? = null,
 
     @SerializedName("title")
-    val title: String? = null,
+    var title: String? = null,
 
     @SerializedName("url")
-    val url: String? = null
+    var url: String? = null
 )
