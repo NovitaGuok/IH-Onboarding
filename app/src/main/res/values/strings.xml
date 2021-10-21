@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">IH Onboarding</string>
-    <string name="sample">Sample</string>
     <string name="title_login">TimeRomanNews.</string>
     <string name="btn_login">Login</string>
     <string name="label_email">Email</string>
