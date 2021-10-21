@@ -41,10 +41,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             resValue "string", "app_version", "${defaultConfig.versionName}"
+            buildConfigField "String", "BASE_URL", '"https://icehousecorp.com/careers/"'
         }
         debug {
             versionNameSuffix ".debug"
             resValue "string", "app_version", "${defaultConfig.versionName}${versionNameSuffix}"
+            buildConfigField "String", "BASE_URL", '"https://icehousecorp.com/careers/"'
         }
     }
     compileOptions {
@@ -114,6 +116,10 @@ dependencies {
     // Room
     implementation "androidx.room:room-runtime:2.3.0"
     kapt "androidx.room:room-compiler:2.3.0"
+
+    // Data Store
+    implementation "androidx.datastore:datastore:1.0.0"
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:2.3.0"
