@@ -1,4 +1,4 @@
-package com.example.ihonboarding.ui.screens
+package com.example.ihonboarding.presentation.screens.login
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,13 +24,15 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ihonboarding.R
-import com.example.ihonboarding.ui.components.CustomButton
-import com.example.ihonboarding.ui.theme.IHOnboardingTheme
-import com.example.ihonboarding.ui.theme.Monsoon
+import com.example.ihonboarding.presentation.components.CustomButton
+import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
+import com.example.ihonboarding.presentation.theme.Monsoon
 
 @Composable
-fun LoginPage() {
+fun LoginPage(navController: NavController) {
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val passwordVisibility = remember { mutableStateOf(false) }
@@ -101,6 +103,6 @@ fun LoginPage() {
 @Composable
 fun LoginPagePreview() {
     IHOnboardingTheme {
-        LoginPage()
+        LoginPage(navController = rememberNavController())
     }
 }

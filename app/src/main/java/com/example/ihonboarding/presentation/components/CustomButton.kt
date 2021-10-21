@@ -1,4 +1,4 @@
-package com.example.ihonboarding.ui.components
+package com.example.ihonboarding.presentation.components
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,7 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ihonboarding.R
-import com.example.ihonboarding.ui.theme.IHOnboardingTheme
+import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 
 class CustomButton : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
