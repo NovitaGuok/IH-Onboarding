@@ -15,20 +15,6 @@ import androidx.compose.ui.unit.dp
 import com.example.ihonboarding.R
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 
-class CustomButton : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            IHOnboardingTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    CustomButton(stringResource(R.string.sample))
-                }
-            }
-        }
-    }
-}
-
 @Composable
 fun CustomButton(btnText: String) {
     Button(
