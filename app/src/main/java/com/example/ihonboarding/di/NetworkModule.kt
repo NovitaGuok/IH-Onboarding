@@ -2,7 +2,7 @@ package com.example.ihonboarding.di
 
 import com.example.ihonboarding.BuildConfig
 import com.example.ihonboarding.data.network.AuthService
-import com.example.ihonboarding.data.network.model.AuthTokenDtoMapper
+import com.example.ihonboarding.data.network.util.AuthTokenDtoMapper
 import com.example.ihonboarding.data.network.source.AuthTokenRemoteSource
 import com.example.ihonboarding.data.network.source.AuthTokenRemoteSourceImpl
 import dagger.Module
