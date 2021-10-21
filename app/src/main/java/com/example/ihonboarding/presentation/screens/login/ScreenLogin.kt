@@ -57,11 +57,11 @@ fun LoginPage(navController: NavController) {
         TextField(
             value = email.value,
             onValueChange = { email.value = it.trim() },
-            label = { Text(stringResource(R.string.label_email), color = Color(0xFF888888)) },
+            label = { Text(stringResource(R.string.label_email), color = Monsoon) },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
-                focusedIndicatorColor = Color(0xFF888888),
-                unfocusedIndicatorColor = Color(0xFF888888),
+                focusedIndicatorColor = Monsoon,
+                unfocusedIndicatorColor = Monsoon,
             ),
             modifier = modifier
         )
