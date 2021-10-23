@@ -2,10 +2,10 @@ package com.example.ihonboarding.repository.auth
 
 import com.example.ihonboarding.data.local.dao.AuthTokenDao
 import com.example.ihonboarding.data.local.entity.AuthTokenEntity
-import com.example.ihonboarding.data.local.util.AuthPrefsManager
-import com.example.ihonboarding.data.local.util.AuthTokenEntityMapper
+import com.example.ihonboarding.data.local.AuthPrefsManager
+import com.example.ihonboarding.data.local.mapper.AuthTokenEntityMapper
 import com.example.ihonboarding.data.network.model.AuthTokenDto
-import com.example.ihonboarding.data.network.util.AuthTokenDtoMapper
+import com.example.ihonboarding.data.network.mapper.AuthTokenDtoMapper
 import com.example.ihonboarding.data.network.requests.AuthLoginRequest
 import com.example.ihonboarding.data.network.source.AuthTokenRemoteSource
 import com.example.ihonboarding.domain.model.AuthToken

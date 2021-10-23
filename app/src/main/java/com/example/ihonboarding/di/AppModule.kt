@@ -3,8 +3,7 @@ package com.example.ihonboarding.di
 import android.content.Context
 import androidx.room.Room
 import com.example.ihonboarding.data.local.AppDatabase
-import com.example.ihonboarding.data.local.dao.AuthTokenDao
-import com.example.ihonboarding.data.local.util.AuthTokenEntityMapper
+import com.example.ihonboarding.data.local.mapper.AuthTokenEntityMapper
 import com.example.ihonboarding.util.DATABASE_NAME
 import dagger.Module
 import dagger.Provides

@@ -1,4 +1,4 @@
-package com.example.ihonboarding.data.local.util
+package com.example.ihonboarding.data.local
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.ihonboarding.data.local.util.AuthPrefsManager.PreferenceKeys.PREVIOUS_AUTH_USER
+import com.example.ihonboarding.data.local.AuthPrefsManager.PreferenceKeys.PREVIOUS_AUTH_USER
 import com.example.ihonboarding.util.PREVIOUS_USER_PREF_NAME
 import com.example.ihonboarding.util.USER_PREF_NAME
 import dagger.hilt.android.qualifiers.ApplicationContext

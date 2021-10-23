@@ -1,4 +1,4 @@
-package com.example.ihonboarding.data.network.util
+package com.example.ihonboarding.data.network.mapper
 
 import com.example.ihonboarding.data.network.model.AuthTokenDto
 import com.example.ihonboarding.domain.model.AuthToken

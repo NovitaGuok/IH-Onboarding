@@ -1,4 +1,4 @@
-package com.example.ihonboarding.data.local.util
+package com.example.ihonboarding.data.local.mapper
 
 import com.example.ihonboarding.data.local.entity.AuthTokenEntity
 import com.example.ihonboarding.domain.model.AuthToken
