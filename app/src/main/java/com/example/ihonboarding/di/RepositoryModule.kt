@@ -18,13 +18,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
-    @Singleton
     @Provides
     fun provideAuthPrefsManager(@ApplicationContext context: Context): AuthPrefsManager {
         return AuthPrefsManager(context)
     }
 
-    @Singleton
     @Provides
     fun provideAuthRepository(
         authTokenRemoteSource: AuthTokenRemoteSource,
