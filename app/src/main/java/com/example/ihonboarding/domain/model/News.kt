@@ -2,7 +2,6 @@ package com.example.ihonboarding.domain.model
 
 import kotlinx.serialization.Serializable
 
-@Serializable
 data class News(
     var id: Int? = null,
     var channel: Channel? = null,
