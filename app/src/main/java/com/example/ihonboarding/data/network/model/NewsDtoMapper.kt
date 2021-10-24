@@ -1,7 +1,7 @@
 package com.example.ihonboarding.network.model
 
 import com.example.ihonboarding.domain.model.News
-import com.example.ihonboarding.domain.util.DomainMapper
+import com.example.ihonboarding.domain.mapper.DomainMapper
 
 class NewsDtoMapper : DomainMapper<NewsDto, News> {
     override fun mapToDomainModel(model: NewsDto): News {

@@ -1,8 +1,8 @@
 package com.example.ihonboarding.repository
 
 import com.example.ihonboarding.domain.model.News
-import com.example.ihonboarding.network.NewsService
-import com.example.ihonboarding.network.model.NewsDtoMapper
+import com.example.ihonboarding.data.network.NewsService
+import com.example.ihonboarding.data.network.model.NewsDtoMapper
 
 class NewsRepositoryImpl(private val newsService: NewsService, private val mapper: NewsDtoMapper) :
     NewsRepository {
