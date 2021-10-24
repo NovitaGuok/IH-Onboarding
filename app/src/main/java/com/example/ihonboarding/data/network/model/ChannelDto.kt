@@ -1,4 +1,4 @@
-package com.example.ihonboarding.network.model
+package com.example.ihonboarding.data.network.model
 
 import com.google.gson.annotations.SerializedName
 

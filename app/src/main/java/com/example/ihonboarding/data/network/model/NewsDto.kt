@@ -1,4 +1,4 @@
-package com.example.ihonboarding.network.model
+package com.example.ihonboarding.data.network.model
 
 import com.example.ihonboarding.domain.model.Channel
 import com.example.ihonboarding.domain.model.Counter
@@ -14,11 +14,11 @@ data class NewsDto (
     @SerializedName("counter")
     var counter: Counter? = null,
 
-    @SerializedName("cover_image")
-    var cover_image: String? = null,
+    @SerializedName("coverImage")
+    var coverImage: String? = null,
 
-    @SerializedName("created_at")
-    var created_at: String? = null,
+    @SerializedName("createdAt")
+    var createdAt: String? = null,
 
     @SerializedName("nsfw")
     var nsfw: Boolean? = null,

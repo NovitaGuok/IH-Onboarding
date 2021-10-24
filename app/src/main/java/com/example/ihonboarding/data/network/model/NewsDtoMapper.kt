@@ -1,4 +1,4 @@
-package com.example.ihonboarding.network.model
+package com.example.ihonboarding.data.network.model
 
 import com.example.ihonboarding.domain.model.News
 import com.example.ihonboarding.domain.mapper.DomainMapper
@@ -9,8 +9,8 @@ class NewsDtoMapper : DomainMapper<NewsDto, News> {
             id = model.id,
             channel = model.channel,
             counter = model.counter,
-            cover_image = model.cover_image,
-            created_at = model.created_at,
+            coverImage = model.coverImage,
+            createdAt = model.createdAt,
             nsfw = model.nsfw,
             title = model.title,
             url = model.url
@@ -22,8 +22,8 @@ class NewsDtoMapper : DomainMapper<NewsDto, News> {
             id = domainModel.id,
             channel = domainModel.channel,
             counter = domainModel.counter,
-            cover_image = domainModel.cover_image,
-            created_at = domainModel.created_at,
+            coverImage = domainModel.coverImage,
+            createdAt = domainModel.createdAt,
             nsfw = domainModel.nsfw,
             title = domainModel.title,
             url = domainModel.url
