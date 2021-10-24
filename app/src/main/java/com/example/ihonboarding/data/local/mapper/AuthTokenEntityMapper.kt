@@ -2,7 +2,7 @@ package com.example.ihonboarding.data.local.mapper
 
 import com.example.ihonboarding.data.local.entity.AuthTokenEntity
 import com.example.ihonboarding.domain.model.AuthToken
-import com.example.ihonboarding.domain.util.DomainMapper
+import com.example.ihonboarding.domain.mapper.DomainMapper
 
 class AuthTokenEntityMapper : DomainMapper<AuthTokenEntity, AuthToken>{
     override fun mapToDomainModel(model: AuthTokenEntity): AuthToken {

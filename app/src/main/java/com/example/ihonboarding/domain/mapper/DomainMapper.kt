@@ -1,4 +1,4 @@
-package com.example.ihonboarding.domain.util
+package com.example.ihonboarding.domain.mapper
 
 interface DomainMapper <T, DomainModel> {
     fun mapToDomainModel(model: T): DomainModel
