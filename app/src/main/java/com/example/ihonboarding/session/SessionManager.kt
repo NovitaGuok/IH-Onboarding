@@ -19,7 +19,7 @@ class SessionManager @Inject constructor(private val authTokenDao: AuthTokenDao)
     val cachedToken: LiveData<AuthToken?> get() = _cachedToken
 
     fun login(newValue: AuthToken) {
-        Timber.d("login: setting new value")
+        Timber.d("auth: setting new value")
         setValue(newValue)
     }
 

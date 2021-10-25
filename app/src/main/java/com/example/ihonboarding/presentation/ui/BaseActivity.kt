@@ -1,4 +1,4 @@
-package com.example.ihonboarding.presentation
+package com.example.ihonboarding.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ihonboarding.session.SessionManager
