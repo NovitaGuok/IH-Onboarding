@@ -6,8 +6,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class BaseActivity : AppCompatActivity() {
-
+abstract class BaseActivity : AppCompatActivity() {
     @Inject
     lateinit var sessionManager: SessionManager
 }
