@@ -13,24 +13,24 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
-    @Provides
-    fun provideAuthPrefsManager(@ApplicationContext context: Context): AuthPrefsManager {
+class RepositoryModule @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val authTokenRemoteSource: AuthTokenRemoteSource,
+    private val authTokenDao: AuthTokenDao,
+    private val authTokenDtoMapper: AuthTokenDtoMapper,
+    private val authTokenEntityMapper: AuthTokenEntityMapper,
+    private val authPrefsManager: AuthPrefsManager
+) {
+    fun provideAuthPrefsManager(): AuthPrefsManager {
         return AuthPrefsManager(context)
     }
 
-    @Provides
-    fun provideAuthRepository(
-        authTokenRemoteSource: AuthTokenRemoteSource,
-        authTokenDao: AuthTokenDao,
-        authTokenDtoMapper: AuthTokenDtoMapper,
-        authTokenEntityMapper: AuthTokenEntityMapper,
-        authPrefsManager: AuthPrefsManager
-    ): AuthRepository {
+    fun provideAuthRepository(): AuthRepository {
         return AuthRepositoryImpl(
             authTokenRemoteSource = authTokenRemoteSource,
             authTokenDao = authTokenDao,

@@ -13,45 +13,47 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+class NetworkModule @Inject constructor(
+    private val retrofit: Retrofit,
+    private val okHttpClient: OkHttpClient,
+    private val loggingInterceptor: HttpLoggingInterceptor,
+    private val authService: AuthService
+) {
     @Singleton
-    @Provides
     fun provideAuthTokenDtoMapper(): AuthTokenDtoMapper {
         return AuthTokenDtoMapper()
     }
 
     @Singleton
     @Provides
-    fun provideAuthTokenRemoteSource(authService: AuthService): AuthTokenRemoteSource {
+    fun provideAuthTokenRemoteSource(): AuthTokenRemoteSource {
         return AuthTokenRemoteSourceImpl(authService)
     }
 
     @Singleton
     @Provides
-    fun provideAuthService(retrofit: Retrofit): AuthService {
+    fun provideAuthService(): AuthService {
         return retrofit.create(AuthService::class.java)
     }
 
     @Singleton
-    @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     @Singleton
-    @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
     @Singleton
-    @Provides
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
     }
 }
