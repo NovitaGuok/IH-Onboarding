@@ -7,6 +7,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "auth_token")
 data class AuthTokenEntity (
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var id: Int? = null,
+
     @ColumnInfo(name = "email")
     var email: String? = null,
 
