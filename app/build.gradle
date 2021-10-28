@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.ihonboarding"
-        minSdk 22
+        minSdk 24
         targetSdk 31
         versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
