@@ -15,12 +15,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule @Inject constructor(
-    @ApplicationContext private val context: Context
-) {
+class AppModule @Inject constructor() {
+    @Inject @ApplicationContext lateinit var context: Context
+
     @Singleton
     fun provideAuthTokenEntityMapper(): AuthTokenEntityMapper = AuthTokenEntityMapper()
-
 
     /** Database module */
     @Singleton

@@ -18,14 +18,14 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class RepositoryModule @Inject constructor(
-    @ApplicationContext private val context: Context,
-    private val authTokenRemoteSource: AuthTokenRemoteSource,
-    private val authTokenDao: AuthTokenDao,
-    private val authTokenDtoMapper: AuthTokenDtoMapper,
-    private val authTokenEntityMapper: AuthTokenEntityMapper,
-    private val authPrefsManager: AuthPrefsManager
-) {
+class RepositoryModule @Inject constructor() {
+    @Inject @ApplicationContext lateinit var context: Context
+    @Inject lateinit var authTokenRemoteSource: AuthTokenRemoteSource
+    @Inject lateinit var authTokenDao: AuthTokenDao
+    @Inject lateinit var authTokenDtoMapper: AuthTokenDtoMapper
+    @Inject lateinit var authTokenEntityMapper: AuthTokenEntityMapper
+    @Inject lateinit var authPrefsManager: AuthPrefsManager
+
     fun provideAuthPrefsManager(): AuthPrefsManager {
         return AuthPrefsManager(context)
     }

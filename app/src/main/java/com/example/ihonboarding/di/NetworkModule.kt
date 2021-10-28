@@ -18,25 +18,23 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule @Inject constructor(
-    private val retrofit: Retrofit,
-    private val okHttpClient: OkHttpClient,
-    private val loggingInterceptor: HttpLoggingInterceptor,
-    private val authService: AuthService
-) {
+class NetworkModule @Inject constructor() {
+    @Inject lateinit var retrofit: Retrofit
+    @Inject lateinit var okHttpClient: OkHttpClient
+    @Inject lateinit var loggingInterceptor: HttpLoggingInterceptor
+    @Inject lateinit var authService: AuthService
+
     @Singleton
     fun provideAuthTokenDtoMapper(): AuthTokenDtoMapper {
         return AuthTokenDtoMapper()
     }
 
     @Singleton
-    @Provides
     fun provideAuthTokenRemoteSource(): AuthTokenRemoteSource {
         return AuthTokenRemoteSourceImpl(authService)
     }
 
     @Singleton
-    @Provides
     fun provideAuthService(): AuthService {
         return retrofit.create(AuthService::class.java)
     }
