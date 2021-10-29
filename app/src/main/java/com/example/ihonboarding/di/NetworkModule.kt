@@ -5,37 +5,29 @@ import com.example.ihonboarding.data.network.AuthService
 import com.example.ihonboarding.data.network.mapper.AuthTokenDtoMapper
 import com.example.ihonboarding.data.network.source.AuthTokenRemoteSource
 import com.example.ihonboarding.data.network.source.AuthTokenRemoteSourceImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule @Inject constructor() {
-    @Inject lateinit var retrofit: Retrofit
-    @Inject lateinit var okHttpClient: OkHttpClient
-    @Inject lateinit var loggingInterceptor: HttpLoggingInterceptor
-    @Inject lateinit var authService: AuthService
-
+abstract class NetworkModule {
     @Singleton
     fun provideAuthTokenDtoMapper(): AuthTokenDtoMapper {
         return AuthTokenDtoMapper()
     }
 
-    @Singleton
-    fun provideAuthTokenRemoteSource(): AuthTokenRemoteSource {
-        return AuthTokenRemoteSourceImpl(authService)
-    }
+    @Binds
+    abstract fun bindAuthTokenRemoteSource(authService: AuthService): AuthTokenRemoteSource
 
     @Singleton
-    fun provideAuthService(): AuthService {
+    fun provideAuthService(retrofit: Retrofit): AuthService {
         return retrofit.create(AuthService::class.java)
     }
 
@@ -51,7 +43,7 @@ class NetworkModule @Inject constructor() {
     }
 
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
     }
 }
