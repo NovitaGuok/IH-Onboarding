@@ -18,6 +18,7 @@ import org.json.JSONObject
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
+import javax.security.auth.login.LoginException
 
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
@@ -35,11 +36,13 @@ class AuthRepositoryImpl @Inject constructor(
                         val result = saveAuthToken(authTokenDto, authLoginRequest.email)
                         if (result < 0) {
                             Timber.e("Couldn't save an auth token into db.")
+                            throw Exception("Couldn't save an auth token into db.")
                         }
                         saveAuthenticatedUserToDataStorePrefs(authLoginRequest.email)
                         authTokenDto.let {
+                            val authTokenDto = it
                             Resources.success(
-                                authTokenDtoMapper.mapToDomainModel(it)
+                                authTokenDtoMapper.mapToDomainModel(authTokenDto)
                             )
                         }
                     } ?: returnUnknownError()
@@ -69,12 +72,12 @@ class AuthRepositoryImpl @Inject constructor(
                     Timber.d("checkPreviousAuthUser: No previously authenticated user found.")
                     returnNoAuthTokenFound()
                 }
-
                 email.let {
                     authTokenDao.searchByEmail(email)?.let { authTokenEntity ->
                         authTokenEntity.id?.let {
-                            if (it > -1) {
-                                authTokenDao.searchById(it)?.let { authToken ->
+                            val id = it
+                            if (id > -1) {
+                                    authTokenDao.searchById(it)?.let { authToken ->
                                     if (authToken.token != null) {
                                         Resources.success(
                                             authTokenEntityMapper.mapToDomainModel(authToken)
