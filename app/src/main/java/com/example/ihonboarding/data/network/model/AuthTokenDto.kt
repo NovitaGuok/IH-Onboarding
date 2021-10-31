@@ -1,11 +1,13 @@
 package com.example.ihonboarding.data.network.model
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class AuthTokenDto(
-    @SerializedName("token")
+    @SerialName("token")
     val token: String? = null,
 
-    @SerializedName("error")
+    @SerialName("error")
     val error: String? = null
 )

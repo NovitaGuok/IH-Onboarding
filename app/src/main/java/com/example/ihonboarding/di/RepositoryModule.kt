@@ -8,35 +8,20 @@ import com.example.ihonboarding.data.network.mapper.AuthTokenDtoMapper
 import com.example.ihonboarding.data.network.source.AuthTokenRemoteSource
 import com.example.ihonboarding.repository.auth.AuthRepository
 import com.example.ihonboarding.repository.auth.AuthRepositoryImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
-    @Provides
-    fun provideAuthPrefsManager(@ApplicationContext context: Context): AuthPrefsManager {
-        return AuthPrefsManager(context)
+abstract class RepositoryModule {
+
+    fun provideAuthPrefsManager(@ApplicationContext appContext: Context): AuthPrefsManager {
+        return AuthPrefsManager(appContext)
     }
 
-    @Provides
-    fun provideAuthRepository(
-        authTokenRemoteSource: AuthTokenRemoteSource,
-        authTokenDao: AuthTokenDao,
-        authTokenDtoMapper: AuthTokenDtoMapper,
-        authTokenEntityMapper: AuthTokenEntityMapper,
-        authPrefsManager: AuthPrefsManager
-    ): AuthRepository {
-        return AuthRepositoryImpl(
-            authTokenRemoteSource = authTokenRemoteSource,
-            authTokenDao = authTokenDao,
-            authTokenDtoMapper = authTokenDtoMapper,
-            authTokenEntityMapper = authTokenEntityMapper,
-            authPrefsManager = authPrefsManager
-        )
-    }
+    @Binds
+    abstract fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
 }
