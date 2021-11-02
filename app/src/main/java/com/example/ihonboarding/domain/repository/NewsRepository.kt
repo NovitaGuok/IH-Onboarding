@@ -1,0 +1,8 @@
+package com.example.ihonboarding.domain.repository
+
+import com.example.ihonboarding.data.model.News
+
+interface NewsRepository {
+    suspend fun getNews(): List<News>?
+    suspend fun updateNews(): List<News>?
+}
