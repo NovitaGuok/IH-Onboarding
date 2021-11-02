@@ -7,7 +7,7 @@ import com.example.ihonboarding.data.data_source.remote.NewsRemoteDataSource
 import com.example.ihonboarding.data.model.News
 import com.example.ihonboarding.data.model.NewsList
 import com.example.ihonboarding.domain.repository.NewsRepository
-import com.example.ihonboarding.utils.Constants.Companion.TAG
+import com.example.ihonboarding.util.Constants.Companion.TAG
 import retrofit2.Response
 import timber.log.Timber
 
