@@ -1,14 +1,10 @@
 package com.example.ihonboarding.presentation.viewmodel.home
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.*
-import com.example.ihonboarding.data.home.model.News
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import com.example.ihonboarding.domain.home.use_case.GetNewsUseCase
 import com.example.ihonboarding.domain.home.use_case.UpdateNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
