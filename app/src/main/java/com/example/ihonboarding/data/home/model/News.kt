@@ -14,12 +14,23 @@ data class News(
     @SerialName("id")
     val id: Int,
 
-    @Embedded
-    @SerialName("channel")
-    val channel: Channel?,
+    @SerialName("channelId")
+    val channelId: Int?,
 
-    @SerialName("counter")
-    val counter: Counter? = Counter(),
+    @SerialName("channelName")
+    val channelName: String? = "",
+
+    @SerialName("upvote")
+    val upvote: Int? = 0,
+
+    @SerialName("downvote")
+    val downvote: Int? = 0,
+
+    @SerialName("comment")
+    val comment: Int? = 0,
+
+    @SerialName("view")
+    val view: Int? = 0,
 
     @SerialName("cover_image")
     val coverImage: String? = "",
