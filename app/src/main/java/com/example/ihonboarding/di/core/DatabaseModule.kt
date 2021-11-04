@@ -1,4 +1,4 @@
-package com.example.ihonboarding.di
+package com.example.ihonboarding.di.core
 
 import android.content.Context
 import androidx.room.Room
@@ -6,12 +6,11 @@ import com.example.ihonboarding.data.home.dao.NewsDao
 import com.example.ihonboarding.data.home.db.NewsDatabase
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.migration.DisableInstallInCheck
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@DisableInstallInCheck
 class DatabaseModule {
     @Singleton
     @Provides

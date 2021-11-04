@@ -1,4 +1,4 @@
-package com.example.ihonboarding.di
+package com.example.ihonboarding.di.core
 
 import com.example.ihonboarding.data.home.data_source.cache.NewsCacheDataSource
 import com.example.ihonboarding.data.home.data_source.local.NewsLocalDataSource
@@ -7,12 +7,11 @@ import com.example.ihonboarding.data.home.repository.NewsRepositoryImpl
 import com.example.ihonboarding.domain.home.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.migration.DisableInstallInCheck
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
+@DisableInstallInCheck
 class RepositoryModule {
     @Singleton
     @Provides
