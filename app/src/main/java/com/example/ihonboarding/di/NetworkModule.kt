@@ -1,38 +1,32 @@
 package com.example.ihonboarding.di
 
-import com.example.ihonboarding.network.NewsService
-import com.example.ihonboarding.network.model.NewsDtoMapper
-import com.google.gson.GsonBuilder
+import com.example.ihonboarding.data.home.api.NewsService
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+class NetworkModule(private val baseUrl: String) {
+
     @Singleton
     @Provides
-    fun provideNewsMapper(): NewsDtoMapper {
-        return NewsDtoMapper()
+    fun provideRetrofit(): Retrofit {
+        val contentType = "application/json".toMediaType()
+        return Retrofit.Builder().baseUrl(baseUrl)
+            .addConverterFactory(Json.asConverterFactory(contentType)).build()
     }
 
     @Singleton
     @Provides
-    fun provideNewsService(): NewsService {
-        return Retrofit.Builder().baseUrl("http://34.121.153.157/")
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create())).build()
-            .create(NewsService::class.java)
-    }
-
-    @Singleton
-    @Provides
-    @Named("auth_token")
-    fun provideAuthToken(): String {
-        return "somerandomtoken"
+    fun provideNewsService(retrofit: Retrofit): NewsService {
+        return retrofit.create(NewsService::class.java)
     }
 }

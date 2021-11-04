@@ -1,9 +1,10 @@
 package com.example.ihonboarding.di
 
-import com.example.ihonboarding.network.NewsService
-import com.example.ihonboarding.network.model.NewsDtoMapper
-import com.example.ihonboarding.repository.NewsRepository
-import com.example.ihonboarding.repository.NewsRepositoryImpl
+import com.example.ihonboarding.data.home.data_source.cache.NewsCacheDataSource
+import com.example.ihonboarding.data.home.data_source.local.NewsLocalDataSource
+import com.example.ihonboarding.data.home.data_source.remote.NewsRemoteDataSource
+import com.example.ihonboarding.data.home.repository.NewsRepositoryImpl
+import com.example.ihonboarding.domain.home.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,13 +13,14 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+class RepositoryModule {
     @Singleton
     @Provides
     fun provideNewsRepository(
-        newsService: NewsService,
-        newsDtoMapper: NewsDtoMapper
+        newsRemoteDataSource: NewsRemoteDataSource,
+        newsLocalDataSource: NewsLocalDataSource,
+        newsCacheDataSource: NewsCacheDataSource
     ): NewsRepository {
-        return NewsRepositoryImpl(newsService, newsDtoMapper)
+        return NewsRepositoryImpl(newsRemoteDataSource, newsLocalDataSource, newsCacheDataSource)
     }
 }

@@ -1,20 +1,15 @@
 package com.example.ihonboarding.di
 
 import android.content.Context
-import com.example.ihonboarding.presentation.IhOnboardingApplication
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-object AppModule {
+class AppModule(private val context: Context) {
     @Singleton
     @Provides
-    fun provideApplication(@ApplicationContext app: Context): IhOnboardingApplication {
-        return app as IhOnboardingApplication
+    fun provideApplication(): Context {
+        return context.applicationContext
     }
 }
