@@ -18,8 +18,8 @@ android {
         targetSdk 31
         versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", "\"http://34.121.153.157/\""
         vectorDrawables {
             useSupportLibrary true
         }
