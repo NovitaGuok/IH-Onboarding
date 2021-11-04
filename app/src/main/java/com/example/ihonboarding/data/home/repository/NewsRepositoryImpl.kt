@@ -17,7 +17,7 @@ class NewsRepositoryImpl(
     private val newsCacheDataSource: NewsCacheDataSource
 ) : NewsRepository {
     override suspend fun getNews(): List<News>? {
-        TODO("Not yet implemented")
+        return getNewsFromCache()
     }
 
     override suspend fun updateNews(): List<News>? {
@@ -25,7 +25,6 @@ class NewsRepositoryImpl(
 
         newsLocalDataSource.clearAll()
         newsLocalDataSource.saveNewsToDb(newListOfNews)
-
         newsCacheDataSource.saveNewsToCache(newListOfNews)
         return newListOfNews
     }
