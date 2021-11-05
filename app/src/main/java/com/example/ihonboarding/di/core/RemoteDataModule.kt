@@ -5,15 +5,18 @@ import com.example.ihonboarding.data.home.data_source.remote.NewsRemoteDataSourc
 import com.example.ihonboarding.data.home.data_source.remote.NewsRemoteDataSourceImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import dagger.hilt.migration.DisableInstallInCheck
 import javax.inject.Singleton
 
 @Module
-@DisableInstallInCheck
-class RemoteDataModule(private val authorizations: String) {
+@InstallIn(SingletonComponent::class)
+class RemoteDataModule() {
     @Singleton
     @Provides
     fun provideNewsRemoteDataSource(newsService: NewsService): NewsRemoteDataSource {
-        return NewsRemoteDataSourceImpl(newsService, authorizations)
+        return NewsRemoteDataSourceImpl(newsService, "Bearer dGVzdGVyfDIwMjEtMTEtMDVUMTI6MDY6MjRafGNlMWM2MTA2NzM3MWFiNzBhMDk0YWU0OTUxYmNkN2JlZTA2N2UyMTZmN2VkZDUyNDc2NzFhYTAwN2I2NzM1NTg=")
     }
 }

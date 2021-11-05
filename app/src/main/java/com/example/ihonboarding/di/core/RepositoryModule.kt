@@ -7,14 +7,17 @@ import com.example.ihonboarding.data.home.repository.NewsRepositoryImpl
 import com.example.ihonboarding.domain.home.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.migration.DisableInstallInCheck
 import javax.inject.Singleton
 
 @Module
-@DisableInstallInCheck
+@InstallIn(ViewModelComponent::class)
 class RepositoryModule {
-    @Singleton
     @Provides
+    @ViewModelScoped
     fun provideNewsRepository(
         newsRemoteDataSource: NewsRemoteDataSource,
         newsLocalDataSource: NewsLocalDataSource,

@@ -5,11 +5,14 @@ import com.example.ihonboarding.data.home.data_source.local.NewsLocalDataSource
 import com.example.ihonboarding.data.home.data_source.local.NewsLocalDataSourceImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 import dagger.hilt.migration.DisableInstallInCheck
 import javax.inject.Singleton
 
 @Module
-@DisableInstallInCheck
+@InstallIn(SingletonComponent::class)
 class LocalDataModule {
     @Singleton
     @Provides

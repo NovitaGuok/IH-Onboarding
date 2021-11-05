@@ -5,6 +5,8 @@ import com.example.ihonboarding.data.home.api.NewsService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import dagger.hilt.migration.DisableInstallInCheck
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -12,8 +14,8 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
-@DisableInstallInCheck
-class NetworkModule(private val baseUrl: String) {
+@InstallIn(SingletonComponent::class)
+class NetworkModule {
 
     @Singleton
     @Provides

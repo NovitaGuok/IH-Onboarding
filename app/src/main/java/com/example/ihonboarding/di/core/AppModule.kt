@@ -7,12 +7,12 @@ import dagger.Provides
 import dagger.hilt.migration.DisableInstallInCheck
 import javax.inject.Singleton
 
-@Module(subcomponents = [NewsSubcomponent::class])
-@DisableInstallInCheck
-class AppModule(private val context: Context) {
-    @Singleton
-    @Provides
-    fun provideApplication(): Context {
-        return context.applicationContext
-    }
-}
+//@Module(subcomponents = [NewsSubcomponent::class])
+//@InstallIn(S)
+//class AppModule(private val context: Context) {
+//    @Singleton
+//    @Provides
+//    fun provideApplication(): Context {
+//        return context.applicationContext
+//    }
+//}
