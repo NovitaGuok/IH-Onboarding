@@ -10,8 +10,9 @@ import com.example.ihonboarding.domain.home.repository.NewsRepository
 import com.example.ihonboarding.util.Constants.Companion.TAG
 import retrofit2.Response
 import timber.log.Timber
+import javax.inject.Inject
 
-class NewsRepositoryImpl(
+class NewsRepositoryImpl @Inject constructor(
     private val newsRemoteDataSource: NewsRemoteDataSource,
     private val newsLocalDataSource: NewsLocalDataSource,
     private val newsCacheDataSource: NewsCacheDataSource
