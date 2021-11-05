@@ -9,21 +9,23 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.ihonboarding.di.Injector
 import com.example.ihonboarding.presentation.viewmodel.home.NewsViewModel
 import com.example.ihonboarding.presentation.viewmodel.home.NewsViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var factory: NewsViewModelFactory
+//    @Inject
+//    lateinit var factory: NewsViewModelFactory
     private lateinit var newsViewModel: NewsViewModel
 
     @SuppressLint("TimberArgCount")
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
 
-        (application as Injector).createNewsSubcomponent().inject(this)
-        newsViewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
+//        (application as Injector).createNewsSubcomponent().inject(this)
+        newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
         val responseLiveData = newsViewModel.getNews()
         responseLiveData.observe(this, Observer {
             Timber.i("TAG", it.toString())
