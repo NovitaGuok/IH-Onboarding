@@ -1,4 +1,4 @@
-package com.example.ihonboarding.ui.theme
+package com.example.ihonboarding.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -10,3 +10,4 @@ val BalticSea = Color(0xFF282828)
 val Mercury = Color(0xFFE5E5E5)
 val Monsoon = Color(0xFF888888)
 val DarkJungleGreen = Color(0xFF222222)
+val MountainMist = Color(0xFF979797)

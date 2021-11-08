@@ -1,4 +1,4 @@
-package com.example.ihonboarding.ui.theme
+package com.example.ihonboarding.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
@@ -19,7 +19,6 @@ private val LightColorPalette = lightColors(
     primaryVariant = BalticSea,
     secondary = Mercury,
     background = Color.White,
-
 
     /* Other default colors to override
     background = Color.White,

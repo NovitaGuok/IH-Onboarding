@@ -1,4 +1,4 @@
-package com.example.ihonboarding.ui.theme
+package com.example.ihonboarding.presentation.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
