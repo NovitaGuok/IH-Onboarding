@@ -17,11 +17,11 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsLocalDataSource: NewsLocalDataSource,
     private val newsCacheDataSource: NewsCacheDataSource
 ) : NewsRepository {
-    override suspend fun getNews(): List<News>? {
+    override suspend fun getNews(): List<News> {
         return getNewsFromCache()
     }
 
-    override suspend fun updateNews(): List<News>? {
+    override suspend fun updateNews(): List<News> {
         val newListOfNews: List<News> = getNewsFromApi()
 
         newsLocalDataSource.clearAll()
@@ -32,7 +32,7 @@ class NewsRepositoryImpl @Inject constructor(
 
     @SuppressLint("TimberArgCount")
     suspend fun getNewsFromApi(): List<News> {
-        lateinit var newsList: List<News>
+        var newsList: List<News> = listOf(News(id = 1, channelId = 1, title = "this is title"))
         try {
             val response: Response<NewsList> = newsRemoteDataSource.getNews()
             val body: NewsList? = response.body()
@@ -47,7 +47,7 @@ class NewsRepositoryImpl @Inject constructor(
 
     @SuppressLint("TimberArgCount")
     suspend fun getNewsFromDb(): List<News> {
-        lateinit var newsList: List<News>
+        var newsList: List<News> = emptyList()
         try {
             newsList = newsLocalDataSource.getNewsFromDb()
         } catch (e: Exception) {
@@ -63,7 +63,7 @@ class NewsRepositoryImpl @Inject constructor(
 
     @SuppressLint("TimberArgCount")
     suspend fun getNewsFromCache(): List<News> {
-        lateinit var newsList: List<News>
+        var newsList: List<News> = emptyList()
         try {
             newsList = newsCacheDataSource.getNewsFromCache()
         } catch (e: Exception) {

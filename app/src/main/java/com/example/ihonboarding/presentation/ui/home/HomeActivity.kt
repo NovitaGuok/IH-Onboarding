@@ -3,6 +3,7 @@ package com.example.ihonboarding.presentation.ui.home
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,19 +17,16 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
-//    @Inject
-//    lateinit var factory: NewsViewModelFactory
     private lateinit var newsViewModel: NewsViewModel
 
-    @SuppressLint("TimberArgCount")
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-//        (application as Injector).createNewsSubcomponent().inject(this)
         newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
         val responseLiveData = newsViewModel.getNews()
-        responseLiveData.observe(this, Observer {
-            Timber.i("TAG", it.toString())
+        responseLiveData.observe(this, {
+            Log.e("TAG", it.toString())
         })
     }
+
 }
