@@ -1,18 +1,16 @@
 package com.example.ihonboarding.di.core
 
 import android.content.Context
-import com.example.ihonboarding.di.news.NewsSubcomponent
 import dagger.Module
-import dagger.Provides
-import dagger.hilt.migration.DisableInstallInCheck
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-//@Module(subcomponents = [NewsSubcomponent::class])
-//@InstallIn(S)
-//class AppModule(private val context: Context) {
+@Module()
+@InstallIn(SingletonComponent::class)
+class AppModule(private val context: Context) {
 //    @Singleton
 //    @Provides
 //    fun provideApplication(): Context {
 //        return context.applicationContext
 //    }
-//}
+}

@@ -17,11 +17,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ihonboarding.R
+import com.example.ihonboarding.domain.home.model.News
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 import com.example.ihonboarding.presentation.theme.MountainMist
 
 @Composable
-fun CardTopic(title: String, publishTime: String) {
+fun CardTopic(news: News) {
     val bottomTextStyle = TextStyle(color = MountainMist, fontWeight = FontWeight.W600)
 
     Card(
@@ -49,7 +50,7 @@ fun CardTopic(title: String, publishTime: String) {
                 .fillMaxWidth()
                 .padding(12.dp, 8.dp)) {
                 Text(
-                    text = title,
+                    text = "${news.title}",
                     style = TextStyle(color = Color.Black, fontWeight = FontWeight.W700),
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
@@ -59,7 +60,7 @@ fun CardTopic(title: String, publishTime: String) {
                     Reaction(stringResource(R.string.desc_likes))
                     Reaction(stringResource(R.string.desc_dislikes))
                     Text(
-                        text = publishTime,
+                        text = "${news.createdAt}",
                         style = bottomTextStyle,
                         textAlign = TextAlign.Right,
                         modifier = Modifier.fillMaxWidth()
@@ -75,6 +76,5 @@ fun CardTopic(title: String, publishTime: String) {
 @Composable
 fun CardTopicPreview() {
     IHOnboardingTheme {
-        CardTopic("John Stones Reborn When City Get Rid of Manchester United", "7 Jan 21")
     }
 }
