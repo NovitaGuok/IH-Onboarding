@@ -13,18 +13,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {
-//    @Provides
-//    @ViewModelScoped
-//    fun provideNewsRepository(
-//        newsRemoteDataSource: NewsRemoteDataSource,
-//        newsLocalDataSource: NewsLocalDataSource,
-//        newsCacheDataSource: NewsCacheDataSource
-//    ): NewsRepository {
-//        return NewsRepositoryImpl(newsRemoteDataSource, newsLocalDataSource, newsCacheDataSource)
-//    }
-//    @Binds
-//    abstract fun provideNewsRepository(newsRepositoryImpl: NewsRepositoryImpl): NewsRepository
-
     @Provides
     @Singleton
     fun provideNewsRepository(newsService: NewsService): NewsRepository {
