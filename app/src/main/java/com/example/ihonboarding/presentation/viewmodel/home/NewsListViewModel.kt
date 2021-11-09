@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.ihonboarding.domain.home.use_case.GetNewsUseCase
 import com.example.ihonboarding.util.Resource
@@ -18,10 +17,6 @@ class NewsListViewModel
 @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase,
 ) : ViewModel() {
-    //    fun getNews() = liveData {
-//        val newsList = getNewsUseCase.invoke()
-//        emit(newsList)
-//    }
     private val _newsState = mutableStateOf(NewsListState())
     val state: State<NewsListState> = _newsState
 
