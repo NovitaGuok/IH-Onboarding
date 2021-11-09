@@ -1,9 +1,6 @@
 package com.example.ihonboarding.data.home.data_source.remote.dto
 
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.example.ihonboarding.domain.home.model.News
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -25,7 +22,7 @@ data class NewsDto(
     @SerialName("created_at")
     val createdAt: String = "",
 
-    @SerialName("nfsw")
+    @SerialName("nsfw")
     val nsfw: Boolean = false,
 
     @SerialName("title")

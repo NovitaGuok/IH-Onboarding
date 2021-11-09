@@ -1,7 +1,7 @@
 package com.example.ihonboarding.domain.home.repository
 
-import com.example.ihonboarding.data.home.data_source.remote.dto.NewsDto
+import com.example.ihonboarding.domain.home.model.News
 
 interface NewsRepository {
-    suspend fun getNewsList(): List<NewsDto>?
+    suspend fun getNewsList(): List<News>
 }

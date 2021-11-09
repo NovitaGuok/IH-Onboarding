@@ -1,5 +1,6 @@
 package com.example.ihonboarding.presentation.viewmodel.home
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -33,6 +34,7 @@ class NewsListViewModel
             when (res) {
                 is Resource.Success -> {
                     _newsState.value = NewsListState(newsList = res.data ?: emptyList())
+                    Log.d("TAG", res.toString())
                 }
                 is Resource.Error -> {
                     _newsState.value =

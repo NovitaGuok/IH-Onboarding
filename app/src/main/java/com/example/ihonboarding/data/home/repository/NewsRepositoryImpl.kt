@@ -2,14 +2,20 @@ package com.example.ihonboarding.data.home.repository
 
 import com.example.ihonboarding.data.home.data_source.remote.api.NewsService
 import com.example.ihonboarding.data.home.data_source.remote.dto.NewsDto
+import com.example.ihonboarding.data.home.data_source.remote.dto.NewsListDto
+import com.example.ihonboarding.data.home.data_source.remote.dto.toSingleNews
+import com.example.ihonboarding.domain.home.model.News
 import com.example.ihonboarding.domain.home.repository.NewsRepository
 import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
     private val newsService: NewsService,
 ) : NewsRepository {
-    override suspend fun getNewsList(): List<NewsDto>? {
-        return newsService.getNews("Bearer dGVzdGVyfDIwMjEtMTEtMDlUMDg6MjE6MDNafGE5YTE1NGJkMGY1YTNlODBmYzBhYjJlMDczMmM0NjNmNjEwMjlkZDM5MmU5NmU4YWQ2MmE2MWNkZDUxN2JhNDI=")
+    override suspend fun getNewsList(): List<News> {
+        return newsService.getNews("Bearer dGVzdGVyfDIwMjEtMTEtMDlUMTI6MDU6NTlafDU0OGVhNmQ3MGYzYWZlNDIyZjcxZWRmMjU5NzhiMWQyMTdkYzM5M2NlYmU1MjA4MDMwMDliZWE3NmY2MTRiZTg=")
+            .data.map {
+                it.toSingleNews()
+            }
     }
 //    override suspend fun getNews(): List<NewsDto>? {
 //        return getNewsFromCache()
