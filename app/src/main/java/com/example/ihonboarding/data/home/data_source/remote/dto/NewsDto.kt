@@ -10,44 +10,40 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class NewsDto(
+    @SerialName("id")
     val id: Int,
 
-    @SerialName("channel_id")
-    val channelId: Int?,
+    @SerialName("channel")
+    val channel: ChannelDto,
 
-    @SerialName("channel_name")
-    val channelName: String? = "",
-
-    val upvote: Int? = 0,
-
-    val downvote: Int? = 0,
-
-    val comment: Int? = 0,
-
-    val view: Int? = 0,
+    @SerialName("counter")
+    val counter: CounterDto,
 
     @SerialName("cover_image")
-    val coverImage: String? = "",
+    val coverImage: String = "",
 
     @SerialName("created_at")
-    val createdAt: String? = "",
+    val createdAt: String = "",
 
-    val nsfw: Boolean? = false,
+    @SerialName("nfsw")
+    val nsfw: Boolean = false,
 
-    val title: String? = "",
+    @SerialName("title")
+    val title: String = "",
 
-    val url: String? = ""
+    @SerialName("url")
+    val url: String = ""
 )
 
 fun NewsDto.toSingleNews(): News {
     return News(
         id = id,
-        channelId = channelId,
-        channelName = channelName,
-        upvote = upvote,
-        downvote = downvote,
-        comment = comment,
-        view = view,
+        channelId = channel.id,
+        channelName = channel.name,
+        upvote = counter.upvote,
+        downvote = counter.downvote,
+        comment = counter.comment,
+        view = counter.view,
         coverImage = coverImage,
         createdAt = createdAt,
         nsfw = nsfw,

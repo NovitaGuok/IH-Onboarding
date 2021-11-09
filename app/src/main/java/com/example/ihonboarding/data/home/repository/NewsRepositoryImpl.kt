@@ -9,7 +9,7 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsService: NewsService,
 ) : NewsRepository {
     override suspend fun getNewsList(): List<NewsDto>? {
-        return newsService.getNews("Bearer dGVzdGVyfDIwMjEtMTEtMDlUMDI6NTI6NTRafDdlOTdkNzQ1MmRkYWZhMTBjMTFiMzcxYjMzOTc1MDg4ODdmMGQ4ZDllNGYwYzYyYjQ4MWU3NDRhYTdhZjkxOWQ=")
+        return newsService.getNews("Bearer dGVzdGVyfDIwMjEtMTEtMDlUMDg6MjE6MDNafGE5YTE1NGJkMGY1YTNlODBmYzBhYjJlMDczMmM0NjNmNjEwMjlkZDM5MmU5NmU4YWQ2MmE2MWNkZDUxN2JhNDI=")
     }
 //    override suspend fun getNews(): List<NewsDto>? {
 //        return getNewsFromCache()

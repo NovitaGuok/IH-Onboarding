@@ -9,5 +9,5 @@ interface NewsService {
     suspend fun getNews(
         @Header("Authorization") token: String,
 //        @Query("token") token: String
-    ): List<NewsDto>?
+    ): List<NewsDto>
 }
