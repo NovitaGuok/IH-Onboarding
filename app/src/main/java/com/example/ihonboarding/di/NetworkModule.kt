@@ -1,4 +1,4 @@
-package com.example.ihonboarding.di.core
+package com.example.ihonboarding.di
 
 import com.example.ihonboarding.BuildConfig
 import com.example.ihonboarding.data.home.data_source.remote.api.NewsService
