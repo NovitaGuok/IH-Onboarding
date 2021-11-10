@@ -6,7 +6,7 @@ import retrofit2.http.Header
 
 interface NewsService {
     @GET("me/news")
-    suspend fun getNews(
+    suspend fun getNewsList(
         @Header("Authorization") token: String,
 //        @Query("token") token: String
     ): NewsListDto
