@@ -1,6 +1,11 @@
 package com.example.ihonboarding.domain.home.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "news")
 data class News(
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val channelId: Int,
     val channelName: String = "",
@@ -14,4 +19,3 @@ data class News(
     val title: String = "",
     val url: String = ""
 )
-

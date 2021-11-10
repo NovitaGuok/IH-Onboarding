@@ -1,7 +1,7 @@
 package com.example.ihonboarding.di
 
 import com.example.ihonboarding.BuildConfig
-import com.example.ihonboarding.data.home.data_source.remote.api.NewsService
+import com.example.ihonboarding.data_source.home.remote.api.NewsService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -21,7 +21,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        return HttpLoggingInterceptor()
     }
 
     @Singleton
