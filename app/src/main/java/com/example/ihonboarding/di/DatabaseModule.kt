@@ -2,7 +2,7 @@ package com.example.ihonboarding.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.ihonboarding.data_source.home.local.db.NewsDb
+import com.example.ihonboarding.feature.home.data_source.local.db.NewsDb
 import com.example.ihonboarding.util.Constants.Companion.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
