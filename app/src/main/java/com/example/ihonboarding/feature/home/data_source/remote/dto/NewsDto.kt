@@ -1,4 +1,4 @@
-package com.example.ihonboarding.data_source.home.remote.dto
+package com.example.ihonboarding.feature.home.data_source.remote.dto
 
 
 import com.example.ihonboarding.domain.home.model.News

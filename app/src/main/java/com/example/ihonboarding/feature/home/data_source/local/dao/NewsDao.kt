@@ -1,4 +1,4 @@
-package com.example.ihonboarding.data_source.home.local.dao
+package com.example.ihonboarding.feature.home.data_source.local.dao
 
 import androidx.room.*
 import com.example.ihonboarding.domain.home.model.News
@@ -10,8 +10,5 @@ interface NewsDao {
    fun getLocalNewsList(): Flow<List<News>>
 
    @Insert(onConflict = OnConflictStrategy.REPLACE)
-   suspend fun insertLocalNews(News: News)
-
-   @Delete
-   suspend fun deleteLocalNews(News: News)
+   suspend fun insertLocalNews(news: News)
 }
