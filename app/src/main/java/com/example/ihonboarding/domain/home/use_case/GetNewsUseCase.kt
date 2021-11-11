@@ -1,26 +1,49 @@
 package com.example.ihonboarding.domain.home.use_case
 
-import android.util.Log
 import com.example.ihonboarding.domain.home.model.News
-import com.example.ihonboarding.data_source.home.remote.repository.NewsRemoteDataSource
+import com.example.ihonboarding.domain.home.repository.NewsRepository
 import com.example.ihonboarding.domain.home.util.NewsOrder
 import com.example.ihonboarding.domain.home.util.OrderType
-import com.example.ihonboarding.util.Constants.Companion.TAG
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetNewsUseCase @Inject constructor(private val newsRemoteDataSource: NewsRemoteDataSource) {
+class GetNewsUseCase @Inject constructor(
+    private val newsRepository: NewsRepository
+) {
+    suspend fun getNewsList(): Flow<List<News>> {
+        return newsRepository.getNewsList()
+    }
+
     operator fun invoke(
         newsOrder: NewsOrder = NewsOrder.CreatedAt(OrderType.Descending)
     ): Flow<List<News>> =
         flow {
-            newsRemoteDataSource.getNewsList().asFlow().map {
-                it
-            }.onCompletion {
-                Log.d(TAG, "onCompletion")
-                Log.d(TAG, it.toString())
-            }.collect {
-                Log.d(TAG, it.toString())
+            newsRepository.getNewsList().map { news ->
+                when(newsOrder.orderType) {
+                    is OrderType.Descending -> {
+                        when(newsOrder) {
+                            is NewsOrder.CreatedAt -> news.sortedBy { it.createdAt }
+                            is NewsOrder.Title -> news.sortedBy { it.title.lowercase() }
+                        }
+                    }
+                    is OrderType.Ascending -> {
+                        when(newsOrder) {
+                            is NewsOrder.CreatedAt -> news.sortedByDescending { it.createdAt }
+                            is NewsOrder.Title -> news.sortedByDescending { it.title.lowercase() }
+                        }
+                    }
+                }
             }
         }
 }
+
+//newsRepository.getNewsList().map {
+//    it
+//}.onCompletion {
+//    Log.d(TAG, "onCompletion")
+//    Log.d(TAG, it.toString())
+//}.collect {
+//    Log.d(TAG, it.toString())
+//}
