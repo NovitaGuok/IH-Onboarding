@@ -6,8 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ihonboarding.domain.home.use_case.GetNewsUseCase
-import com.example.ihonboarding.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -18,28 +18,34 @@ class NewsListViewModel
     private val getNewsUseCase: GetNewsUseCase,
 ) : ViewModel() {
     private val _newsState = mutableStateOf(NewsListState())
-    val state: State<NewsListState> = _newsState
+    val newsState: State<NewsListState> = _newsState
 
     init {
         getNewsList()
     }
 
     private fun getNewsList() {
-        getNewsUseCase().onEach { res ->
-            when (res) {
-                is Resource.Success -> {
-                    _newsState.value = NewsListState(newsList = res.data ?: emptyList())
-                    Log.d("TAG", res.toString())
-                }
-                is Resource.Error -> {
-                    _newsState.value =
-                        NewsListState(error = res.msg ?: "An unexpected error occured.")
-                }
-                is Resource.Loading -> {
-                    _newsState.value = NewsListState(isLoading = true)
+        _newsState.value = NewsListState(isLoading = true)
+        getNewsUseCase.getNewsList().onEach { res ->
+            _newsState.value = newsState.value.copy(newsList = res)
+            Log.d("viewModel", res.toString())
 
-                }
-            }
+//                when (res) {
+//                    is Resource.Success<*> -> {
+//                        _newsState.value = NewsListState(newsList = res.data)
+//                        Log.d("TAG", res.toString())
+//                    }
+//                    is Resource.Error -> {
+//                        _newsState.value =
+//                            NewsListState(error = res.msg ?: "An unexpected error occured.")
+//                    }
+//                    is Resource.Loading -> {
+//                        _newsState.value = NewsListState(isLoading = true)
+//
+//                    }
+//                }
+        }.catch { e ->
+            _newsState.value = NewsListState(error = e.localizedMessage ?: "An unexpected error occured")
         }.launchIn(viewModelScope)
     }
 }

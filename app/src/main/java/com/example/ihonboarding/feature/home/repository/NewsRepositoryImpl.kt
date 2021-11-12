@@ -5,7 +5,6 @@ import com.example.ihonboarding.domain.home.model.News
 import com.example.ihonboarding.domain.home.repository.NewsRepository
 import com.example.ihonboarding.feature.home.data_source.local.NewsLocalDataSource
 import com.example.ihonboarding.feature.home.data_source.remote.NewsRemoteDataSource
-import com.example.ihonboarding.util.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -17,31 +16,17 @@ class NewsRepositoryImpl @Inject constructor(
     override fun getNewsList(): Flow<List<News>> {
         return flow {
             val newData = newsRemoteDataSource.getNewsList()
-            emit(newData)
             Log.d("newData", newData.toString())
-            saveToLocalDb()
+            saveToLocalDb(newData)
             emitAll(newsLocalDataSource.getLocalNewsList().map { news -> news })
-        }.catch {
+        }.catch { e ->
+            Log.d("newDataData", e.message.toString())
             val previousData = newsLocalDataSource.getLocalNewsList().first()
             emit(previousData)
         }.flowOn(Dispatchers.IO)
     }
 
-
-    private suspend fun saveToLocalDb() {
-        val remoteNewsList: List<News> = newsRemoteDataSource.getNewsList()
-        newsLocalDataSource.insertLocalNews(remoteNewsList)
-
+    private suspend fun saveToLocalDb(news: List<News>) {
+        newsLocalDataSource.insertLocalNews(news)
     }
-
-//    override suspend fun getNewsList(): Flow<List<News>> {
-//        return newsRemoteDataSource.getNewsList().map {
-//            it
-//        }.onEach {
-//            it.forEach { news ->
-//                Log.d("newsRepo", news.toString())
-//                newsLocalDataSource.insertLocalNews(news)
-//            }
-//        }
-//    }
 }

@@ -12,38 +12,29 @@ import javax.inject.Inject
 class GetNewsUseCase @Inject constructor(
     private val newsRepository: NewsRepository
 ) {
-    suspend fun getNewsList(): Flow<List<News>> {
+    fun getNewsList(): Flow<List<News>> {
         return newsRepository.getNewsList()
     }
 
-    operator fun invoke(
-        newsOrder: NewsOrder = NewsOrder.CreatedAt(OrderType.Descending)
-    ): Flow<List<News>> =
-        flow {
-            newsRepository.getNewsList().map { news ->
-                when(newsOrder.orderType) {
-                    is OrderType.Descending -> {
-                        when(newsOrder) {
-                            is NewsOrder.CreatedAt -> news.sortedBy { it.createdAt }
-                            is NewsOrder.Title -> news.sortedBy { it.title.lowercase() }
-                        }
-                    }
-                    is OrderType.Ascending -> {
-                        when(newsOrder) {
-                            is NewsOrder.CreatedAt -> news.sortedByDescending { it.createdAt }
-                            is NewsOrder.Title -> news.sortedByDescending { it.title.lowercase() }
-                        }
-                    }
-                }
-            }
-        }
+//    operator fun invoke(
+//        newsOrder: NewsOrder = NewsOrder.CreatedAt(OrderType.Descending)
+//    ): Flow<List<News>> =
+//        flow {
+//            newsRepository.getNewsList().map { news ->
+//                when(newsOrder.orderType) {
+//                    is OrderType.Descending -> {
+//                        when(newsOrder) {
+//                            is NewsOrder.CreatedAt -> news.sortedBy { it.createdAt }
+//                            is NewsOrder.Title -> news.sortedBy { it.title.lowercase() }
+//                        }
+//                    }
+//                    is OrderType.Ascending -> {
+//                        when(newsOrder) {
+//                            is NewsOrder.CreatedAt -> news.sortedByDescending { it.createdAt }
+//                            is NewsOrder.Title -> news.sortedByDescending { it.title.lowercase() }
+//                        }
+//                    }
+//                }
+//            }
+//        }
 }
-
-//newsRepository.getNewsList().map {
-//    it
-//}.onCompletion {
-//    Log.d(TAG, "onCompletion")
-//    Log.d(TAG, it.toString())
-//}.collect {
-//    Log.d(TAG, it.toString())
-//}
