@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsLocalDataSource {
     fun getLocalNewsList(): Flow<List<News>>
-    suspend fun insertLocalNews(news: News)
+    suspend fun insertLocalNews(news: List<News>)
 }

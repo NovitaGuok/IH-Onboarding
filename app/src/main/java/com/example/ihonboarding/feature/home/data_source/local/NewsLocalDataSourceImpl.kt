@@ -12,7 +12,7 @@ class NewsLocalDataSourceImpl @Inject constructor(
         return newsDao.getLocalNewsList()
     }
 
-    override suspend fun insertLocalNews(news: News) {
+    override suspend fun insertLocalNews(news: List<News>) {
         newsDao.insertLocalNews(news)
     }
 }

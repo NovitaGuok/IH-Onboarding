@@ -30,9 +30,8 @@ class NewsRepositoryImpl @Inject constructor(
 
     private suspend fun saveToLocalDb() {
         val remoteNewsList: List<News> = newsRemoteDataSource.getNewsList()
-        remoteNewsList.forEach {
-            newsLocalDataSource.insertLocalNews(it)
-        }
+        newsLocalDataSource.insertLocalNews(remoteNewsList)
+
     }
 
 //    override suspend fun getNewsList(): Flow<List<News>> {
