@@ -4,8 +4,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Comment
+import androidx.compose.material.icons.outlined.ThumbDown
+import androidx.compose.material.icons.outlined.ThumbUp
+import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,6 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.ImagePainter
+import coil.compose.rememberImagePainter
 import com.example.ihonboarding.R
 import com.example.ihonboarding.domain.home.model.News
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
@@ -52,11 +60,18 @@ fun CardTopic(news: News) {
                     .height(160.dp),
                 contentAlignment = Alignment.Center
             ) {
+                val painter = rememberImagePainter(
+                    data = news.coverImage
+                )
+                val painterState = painter.state
                 Image(
-                    painter = painterResource(R.drawable.razor),
-                    contentDescription = stringResource(R.string.desc_profile_pic),
+                    painter = painter,
+                    contentDescription = "Cover Image",
                     contentScale = ContentScale.FillWidth,
                 )
+                if (painterState is ImagePainter.State.Loading) {
+                    CircularProgressIndicator()
+                }
             }
             Column(
                 modifier = Modifier
@@ -69,10 +84,10 @@ fun CardTopic(news: News) {
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Reaction(stringResource(R.string.desc_views))
-                    Reaction(stringResource(R.string.desc_comments))
-                    Reaction(stringResource(R.string.desc_likes))
-                    Reaction(stringResource(R.string.desc_dislikes))
+                    Reaction(Icons.Outlined.Visibility, stringResource(R.string.desc_views), news.view)
+                    Reaction(Icons.Outlined.Comment, stringResource(R.string.desc_comments), news.comment)
+                    Reaction(Icons.Outlined.ThumbUp, stringResource(R.string.desc_likes), news.upvote)
+                    Reaction(Icons.Outlined.ThumbDown, stringResource(R.string.desc_dislikes), news.downvote)
                     Text(
                         text = createdAt,
                         style = bottomTextStyle,

@@ -8,13 +8,14 @@ import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.ihonboarding.presentation.theme.MountainMist
 
 @Composable
-fun Reaction(desc: String) {
+fun Reaction(img: ImageVector, desc: String, num: Int) {
     val bottomTextStyle = TextStyle(color = MountainMist, fontWeight = FontWeight.W600)
     val iconTint = MountainMist
     val iconSize = 16.dp
@@ -25,13 +26,13 @@ fun Reaction(desc: String) {
     Box() {
         Row(modifier = androidx.compose.ui.Modifier.padding(reactionPadding)) {
             Icon(
-                Icons.Outlined.Visibility,
+                img,
                 desc,
                 tint = iconTint,
                 modifier = Modifier.size(iconSize)
             )
             Spacer(modifier = androidx.compose.ui.Modifier.padding(counterSpaceSize))
-            Text(text = "5", style = bottomTextStyle)
+            Text(text = num.toString(), style = bottomTextStyle)
         }
     }
     Spacer(modifier = androidx.compose.ui.Modifier.padding(reactionSpaceSize))

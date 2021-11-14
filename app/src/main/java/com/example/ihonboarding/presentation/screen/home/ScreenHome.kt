@@ -62,19 +62,19 @@ fun HomePage(
                 CardTopic(news = news)
             }
         }
-        if (state.error.isNotBlank()) {
-            Text(
-                text = state.error,
-                color = MaterialTheme.colors.error,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-            )
-        }
-        if (state.isLoading) {
-            CircularProgressIndicator()
-        }
+//        if (state.error.isNotBlank()) {
+//            Text(
+//                text = state.error,
+//                color = MaterialTheme.colors.error,
+//                textAlign = TextAlign.Center,
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .padding(horizontal = 20.dp)
+//            )
+//        }
+//        if (state.isLoading) {
+//            CircularProgressIndicator()
+//        }
     }
 }
 
