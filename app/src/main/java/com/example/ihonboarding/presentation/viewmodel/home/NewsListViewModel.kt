@@ -29,21 +29,6 @@ class NewsListViewModel
         getNewsUseCase.getNewsList().onEach { res ->
             _newsState.value = newsState.value.copy(newsList = res)
             Log.d("viewModel", res.toString())
-
-//                when (res) {
-//                    is Resource.Success<*> -> {
-//                        _newsState.value = NewsListState(newsList = res.data)
-//                        Log.d("TAG", res.toString())
-//                    }
-//                    is Resource.Error -> {
-//                        _newsState.value =
-//                            NewsListState(error = res.msg ?: "An unexpected error occured.")
-//                    }
-//                    is Resource.Loading -> {
-//                        _newsState.value = NewsListState(isLoading = true)
-//
-//                    }
-//                }
         }.catch { e ->
             _newsState.value = NewsListState(error = e.localizedMessage ?: "An unexpected error occured")
         }.launchIn(viewModelScope)

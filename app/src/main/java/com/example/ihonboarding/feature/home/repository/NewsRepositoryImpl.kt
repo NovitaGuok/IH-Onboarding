@@ -21,8 +21,8 @@ class NewsRepositoryImpl @Inject constructor(
             emitAll(newsLocalDataSource.getLocalNewsList().map { news -> news })
         }.catch { e ->
             Log.d("newDataData", e.message.toString())
-            val previousData = newsLocalDataSource.getLocalNewsList().first()
-            emit(previousData)
+            val previousData = newsLocalDataSource.getLocalNewsList().map { news -> news }
+            emitAll(previousData)
         }.flowOn(Dispatchers.IO)
     }
 
