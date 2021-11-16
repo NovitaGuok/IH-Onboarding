@@ -1,21 +1,19 @@
 package com.example.ihonboarding.feature.login.data_source.remote.dto
 
+
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-
-data class ProfileDto (
+@Serializable
+data class ProfileDto(
     @SerialName("bio")
-    var bio: String,
-
+    val bio: String = "",
     @SerialName("name")
-    var name: String,
-
+    val name: String = "",
     @SerialName("picture")
-    var picture: String,
-
+    val picture: String = "",
     @SerialName("username")
-    var username: String,
-
+    val username: String = "",
     @SerialName("web")
-    var web: String
+    val web: String = ""
 )
