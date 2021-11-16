@@ -1,4 +1,4 @@
-package com.example.ihonboarding.feature.login.data_source.remote.interceptor
+package com.example.ihonboarding.feature.login.data_source.remote.network
 
 import com.example.ihonboarding.domain.login.use_case.RefreshTokenUseCase
 import kotlinx.coroutines.runBlocking
@@ -12,8 +12,9 @@ class AuthInterceptor @Inject constructor(private val refreshTokenUseCase: Refre
         val token = runBlocking {
             refreshTokenUseCase.invoke()
         }
+
         return chain.proceed(
-            chain.request().newBuilder().addHeader("Authorization", value = "Bearer " + token.token)
+            chain.request().newBuilder().addHeader("Authorization", value = "Bearer ${token.token}")
                 .build()
         )
     }
