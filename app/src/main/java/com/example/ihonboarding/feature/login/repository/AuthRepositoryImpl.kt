@@ -14,8 +14,8 @@ class AuthRepositoryImpl @Inject constructor(
     private val authRemoteDataSource: AuthRemoteDataSource,
     private val sessionManager: SessionManager,
 ) : AuthRepository {
-    override suspend fun login(authReqDto: AuthReqDto): Token {
-        val res = authRemoteDataSource.login(authReqDto)
+    override suspend fun login(username: String, password: String): Token {
+        val res = authRemoteDataSource.login(username, password)
         val tokenDtoMapper = TokenDtoMapper()
         sessionManager.saveSession(res.token, res.expiresAt)
         return res.let { tokenDtoMapper.mapToDomainModel(it) }

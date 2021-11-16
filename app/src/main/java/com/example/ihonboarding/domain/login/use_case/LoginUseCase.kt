@@ -5,5 +5,6 @@ import com.example.ihonboarding.feature.login.data_source.remote.dto.AuthReqDto
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(private val authRepository: AuthRepository) {
-    suspend operator fun invoke(authReqDto: AuthReqDto) = authRepository.login(authReqDto)
+    suspend fun invoke(username: String, password: String) =
+        authRepository.login(username, password)
 }
