@@ -23,8 +23,3 @@ interface AuthService {
     @GET("me/profile")
     suspend fun getProfile(): Response<ProfileDto>
 }
-
-//val tokenDtoMapper = TokenDtoMapper()
-//
-//            if (res.isSuccessful) return@withContext res.body()
-//                ?.let { tokenDtoMapper.mapToDomainModel(it) }!!
