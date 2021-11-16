@@ -55,6 +55,7 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
             _emailValidator.value = true
             false
         }
+
         else {
             _emailValidator.value = false
             true
