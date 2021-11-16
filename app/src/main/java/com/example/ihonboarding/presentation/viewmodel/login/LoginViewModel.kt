@@ -23,8 +23,8 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
     private val _password = mutableStateOf("")
     val password get() = _password
 
-    private val _emailValidator = mutableStateOf(false)
-    val emailValidator get() = _emailValidator
+    private val _usernameValidator = mutableStateOf(false)
+    val usernameValidator get() = _usernameValidator
 
     private val _passwordValidator = mutableStateOf(false)
     val passwordValidator get() = _passwordValidator
@@ -50,19 +50,19 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
         }
     }
 
-    fun isUsernameValid(): Boolean {
+    private fun isUsernameValid(): Boolean {
         return if (_username.value.isEmpty() || _username.value.isNullOrBlank()) {
-            _emailValidator.value = true
+            _usernameValidator.value = true
             false
         }
 
         else {
-            _emailValidator.value = false
+            _usernameValidator.value = false
             true
         }
     }
 
-    fun isPasswordValid(): Boolean {
+    private fun isPasswordValid(): Boolean {
         return if (_password.value.isEmpty() || _password.value.isNullOrBlank()) {
             _passwordValidator.value = true
             false
@@ -78,5 +78,9 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
         if (!isPasswordValid()) return false
 
         return true
+    }
+
+    fun resetState() {
+        _state.value = Resource.Init()
     }
 }

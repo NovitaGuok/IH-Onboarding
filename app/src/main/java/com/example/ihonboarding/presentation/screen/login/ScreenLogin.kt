@@ -1,17 +1,18 @@
 package com.example.ihonboarding.presentation.screen.login
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -28,17 +29,22 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.ihonboarding.R
-import com.example.ihonboarding.presentation.components.CustomButton
+import com.example.ihonboarding.presentation.components.buttons.CustomButton
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 import com.example.ihonboarding.presentation.theme.Monsoon
 import com.example.ihonboarding.presentation.viewmodel.login.LoginViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.ihonboarding.util.Resource
 
+@ExperimentalComposeUiApi
 @Composable
 fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltViewModel()) {
     val email = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val passwordVisibility = remember { mutableStateOf(false) }
+    val state = viewModel.state.value
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focus = LocalFocusManager.current
+
     Column(
         modifier = Modifier.padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -58,8 +64,9 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
 
         /** Email field */
         TextField(
-            value = email.value,
-            onValueChange = { email.value = it.trim() },
+            value = viewModel.username.value,
+            isError = viewModel.usernameValidator.value,
+            onValueChange = { viewModel.username.value = it.trim() },
             label = { Text(stringResource(R.string.label_email), color = Monsoon) },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
@@ -76,8 +83,9 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
         else
             painterResource(id = R.drawable.design_ic_visibility_off)
         TextField(
-            value = password.value,
-            onValueChange = { password.value = it.trim() },
+            value = viewModel.password.value,
+            isError = viewModel.passwordValidator.value,
+            onValueChange = { viewModel.password.value = it.trim() },
             label = { Text(stringResource(R.string.label_password), color = Monsoon) },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
@@ -98,7 +106,27 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
         Spacer(modifier = Modifier.padding(vertical = 24.dp))
 
         /** Button */
-        CustomButton(btnText = stringResource(R.string.btn_login))
+//        CustomButton(btnText = stringResource(R.string.btn_login))
+        Button(
+            onClick = {
+                if (viewModel.checkValidity()) viewModel.login()
+            },
+            colors = ButtonDefaults.textButtonColors(
+                backgroundColor = MaterialTheme.colors.primaryVariant
+            ),
+            contentPadding = PaddingValues(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 4.dp)
+        ) {
+            Text(stringResource(R.string.btn_login))
+        }
+        when (viewModel.state.value) {
+            is Resource.Success -> {
+                viewModel.resetState()
+            }
+            else -> Unit
+        }
     }
 }
 
@@ -106,6 +134,6 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
 @Composable
 fun LoginPagePreview() {
     IHOnboardingTheme {
-        LoginPage(navController = rememberNavController())
+//        LoginPage(navController = rememberNavController(), viewModel = LoginViewModel())
     }
 }
