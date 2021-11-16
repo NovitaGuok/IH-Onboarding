@@ -1,7 +1,12 @@
 package com.example.ihonboarding.util
 
-const val DATABASE_NAME = "app_db"
-const val USER_PREF_NAME = "user_pref"
-const val PREVIOUS_USER_PREF_NAME = "com.example.ihonboarding.PREVIOUS_AUTH_USER_PREF"
-const val TAG_D = "AppDebug"
-const val DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+class Constant {
+    companion object {
+        val TAG = "TAG"
+        val DATABASE_NAME = "news_db"
+        val PREF_NAME = "pref"
+        val ENC_PREF_NAME = "encrypted_${PREF_NAME}"
+        val PREF_TOKEN = "pref_token"
+        val PREF_EXP = "exp"
+    }
+}
