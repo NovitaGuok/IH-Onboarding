@@ -1,13 +1,13 @@
 package com.example.ihonboarding.presentation.screen.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -19,11 +19,13 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.ihonboarding.R
+import com.example.ihonboarding.domain.home.model.News
 import com.example.ihonboarding.presentation.components.headers.Profile
 import com.example.ihonboarding.presentation.components.lists.CardTopic
 import com.example.ihonboarding.presentation.theme.DarkJungleGreen
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 import com.example.ihonboarding.presentation.viewmodel.home.NewsListViewModel
+import com.example.ihonboarding.util.Resource
 
 @Composable
 fun HomePage(
@@ -58,23 +60,22 @@ fun HomePage(
                     Spacer(modifier = Modifier.height(16.dp))
                 }
             }
-            items(state.newsList) { news ->
-                CardTopic(news = news)
+            when (state) {
+                is Resource.Success -> {
+                    Log.d("homeScreen", state.data.toString())
+                    items(state.data as List<News>) { news ->
+                        CardTopic(news = news)
+                    }
+                }
             }
         }
-//        if (state.error.isNotBlank()) {
-//            Text(
-//                text = state.error,
-//                color = MaterialTheme.colors.error,
-//                textAlign = TextAlign.Center,
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(horizontal = 20.dp)
-//            )
-//        }
-//        if (state.isLoading) {
-//            CircularProgressIndicator()
-//        }
+    }
+}
+
+@Composable
+fun LoadingIndicator() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
     }
 }
 
