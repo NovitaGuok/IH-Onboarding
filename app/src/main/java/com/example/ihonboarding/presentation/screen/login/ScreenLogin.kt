@@ -112,7 +112,6 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
         Button(
             onClick = {
                 if (viewModel.checkValidity()) viewModel.login()
-                else Log.d("lol", viewModel.password.toString())
             },
             colors = ButtonDefaults.textButtonColors(
                 backgroundColor = MaterialTheme.colors.primaryVariant
@@ -126,20 +125,20 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
         }
         when (viewModel.state.value) {
             is Resource.Success -> {
-                viewModel.resetState()
                 Toast.makeText(
                     LocalContext.current,
                     "Showing toast....",
                     Toast.LENGTH_SHORT
                 ).show()
+                viewModel.resetState()
             }
             is Resource.Error -> {
-                viewModel.resetState()
                 Toast.makeText(
                     LocalContext.current,
-                    viewModel.password.value,
+                    viewModel.username.value + viewModel.password.value,
                     Toast.LENGTH_SHORT
                 ).show()
+                viewModel.resetState()
             }
         }
     }

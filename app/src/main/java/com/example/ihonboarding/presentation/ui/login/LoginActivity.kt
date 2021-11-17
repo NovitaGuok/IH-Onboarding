@@ -30,7 +30,7 @@ class LoginActivity :  ComponentActivity() {
                 Surface(color = MaterialTheme.colors.secondary) {
                     val navController = rememberNavController()
 //                    NavHost(navController = navController, startDestination = "${ Route.HomeScreen }")
-                    Log.d(TAG, loginViewModel.state.value.toString())
+                    Log.d("test", loginViewModel.state.value.toString())
                     LoginPage(navController = navController)
                 }
             }

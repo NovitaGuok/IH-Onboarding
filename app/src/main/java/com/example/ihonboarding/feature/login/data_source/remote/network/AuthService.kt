@@ -11,7 +11,6 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AuthService {
-    @FormUrlEncoded
     @POST("auth/login")
     suspend fun login(
         @Body req: AuthReqDto

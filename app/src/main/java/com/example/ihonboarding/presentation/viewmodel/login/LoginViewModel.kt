@@ -1,5 +1,6 @@
 package com.example.ihonboarding.presentation.viewmodel.login
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -45,13 +46,14 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
             }.onSuccess {
                 _state.value = Resource.Success(data = it)
             }.onFailure {
-                _state.value = Resource.Error(null, "error")
+                _state.value = Resource.Error(null, it.toString())
+                Log.d("lvw", it.toString())
             }
         }
     }
 
     private fun isUsernameValid(): Boolean {
-        return if (_username.value.isEmpty() || _username.value.isNullOrBlank()) {
+        return if (_username.value.isEmpty()) {
             _usernameValidator.value = true
             false
         }
@@ -63,7 +65,7 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
     }
 
     private fun isPasswordValid(): Boolean {
-        return if (_password.value.isEmpty() || _password.value.isNullOrBlank()) {
+        return if (_password.value.isEmpty()) {
             _passwordValidator.value = true
             false
         }
