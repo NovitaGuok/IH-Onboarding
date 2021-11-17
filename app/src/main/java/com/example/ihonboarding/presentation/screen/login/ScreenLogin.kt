@@ -1,5 +1,6 @@
 package com.example.ihonboarding.presentation.screen.login
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -11,6 +12,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -32,21 +34,18 @@ import com.example.ihonboarding.R
 import com.example.ihonboarding.presentation.components.buttons.CustomButton
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 import com.example.ihonboarding.presentation.theme.Monsoon
+import com.example.ihonboarding.presentation.ui.login.LoginActivity
 import com.example.ihonboarding.presentation.viewmodel.login.LoginViewModel
 import com.example.ihonboarding.util.Resource
 
 @ExperimentalComposeUiApi
 @Composable
 fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltViewModel()) {
-    val email = remember { mutableStateOf("") }
-    val password = remember { mutableStateOf("") }
     val passwordVisibility = remember { mutableStateOf(false) }
     val state = viewModel.state.value
-    val keyboardController = LocalSoftwareKeyboardController.current
-    val focus = LocalFocusManager.current
 
     Column(
-        modifier = Modifier.padding(20.dp),
+        modifier = Modifier.padding(20.dp).fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val modifier = Modifier.fillMaxWidth()
@@ -110,6 +109,7 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
         Button(
             onClick = {
                 if (viewModel.checkValidity()) viewModel.login()
+
             },
             colors = ButtonDefaults.textButtonColors(
                 backgroundColor = MaterialTheme.colors.primaryVariant
@@ -124,8 +124,20 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
         when (viewModel.state.value) {
             is Resource.Success -> {
                 viewModel.resetState()
+                Toast.makeText(
+                    LocalContext.current,
+                    "Showing toast....",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-            else -> Unit
+            else -> {
+                viewModel.resetState()
+                Toast.makeText(
+                    LocalContext.current,
+                    "fdsafsda....",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }

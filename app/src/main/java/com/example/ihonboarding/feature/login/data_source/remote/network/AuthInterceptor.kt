@@ -5,12 +5,13 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
+import dagger.Lazy
 
-class AuthInterceptor @Inject constructor(private val refreshTokenUseCase: RefreshTokenUseCase) :
+class AuthInterceptor @Inject constructor(private val refreshTokenUseCase: Lazy<RefreshTokenUseCase>) :
     Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val token = runBlocking {
-            refreshTokenUseCase.invoke()
+            refreshTokenUseCase.get().invoke()
         }
 
         return chain.proceed(

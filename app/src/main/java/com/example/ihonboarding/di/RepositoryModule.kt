@@ -15,7 +15,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -36,5 +35,15 @@ class RepositoryModule {
         sessionManager: SessionManager
     ): AuthRepository {
         return AuthRepositoryImpl(authRemoteDataSource, sessionManager)
+    }
+
+    @Provides
+    fun provideLoginUseCase(authRepository: AuthRepository): LoginUseCase {
+        return LoginUseCase(authRepository)
+    }
+
+    @Provides
+    fun provideRefreshTokenUseCase(authRepository: AuthRepository): RefreshTokenUseCase {
+        return RefreshTokenUseCase(authRepository)
     }
 }
