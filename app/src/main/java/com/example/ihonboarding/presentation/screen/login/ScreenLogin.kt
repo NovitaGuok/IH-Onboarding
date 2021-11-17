@@ -1,6 +1,5 @@
 package com.example.ihonboarding.presentation.screen.login
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -11,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -27,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.ihonboarding.R
+import com.example.ihonboarding.presentation.components.dialog.ErrorDialog
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 import com.example.ihonboarding.presentation.theme.Monsoon
 import com.example.ihonboarding.presentation.viewmodel.login.LoginViewModel
@@ -115,24 +114,17 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
         ) {
             Text(stringResource(R.string.btn_login))
         }
-        when (viewModel.state.value) {
-            is Resource.Success -> {
-                Toast.makeText(
-                    LocalContext.current,
-                    "Showing toast....",
-                    Toast.LENGTH_SHORT
-                ).show()
-                viewModel.resetState()
-            }
-            is Resource.Error -> {
-                Toast.makeText(
-                    LocalContext.current,
-                    viewModel.username.value + viewModel.password.value,
-                    Toast.LENGTH_SHORT
-                ).show()
-                viewModel.resetState()
-            }
+    }
+    when (viewModel.state.value) {
+        is Resource.Success -> {
+            viewModel.resetState()
         }
+        is Resource.Error -> ErrorDialog(
+            stringResource(R.string.title_login_failed),
+            stringResource(R.string.body_login_failed),
+            stringResource(R.string.btn_login_failed)
+        )
+        else -> Unit
     }
 }
 

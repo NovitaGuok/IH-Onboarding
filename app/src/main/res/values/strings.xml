@@ -19,4 +19,7 @@
     <string name="desc_profile_pic">profile picture</string>
     <string name="title_home">Hot Topics</string>
     <string name="subtitle_home">See What\'s Happening in the World</string>
+    <string name="title_login_failed">Login Failed!</string>
+    <string name="body_login_failed">Username and password doesn\'t match</string>
+    <string name="btn_login_failed">Retry</string>
 </resources>

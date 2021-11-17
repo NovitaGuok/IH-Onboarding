@@ -1,4 +1,4 @@
-package com.example.ihonboarding.presentation.components.buttons
+package com.example.ihonboarding.presentation.components.button
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
