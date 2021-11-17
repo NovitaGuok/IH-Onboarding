@@ -32,7 +32,7 @@ class AuthRepositoryImpl @Inject constructor(
                 Token(exp ?: "", sessionManager.getToken() ?: "")
             }
         } catch (e: Throwable) {
-            Token(exp ?: "", sessionManager.getToken() ?: "")
+            throw e
         }
     }
 
