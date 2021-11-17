@@ -1,10 +1,8 @@
 package com.example.ihonboarding.feature.login.data_source.remote
 
-import com.example.ihonboarding.domain.login.model.Token
-import com.example.ihonboarding.feature.login.data_source.remote.network.AuthService
 import com.example.ihonboarding.feature.login.data_source.remote.dto.AuthReqDto
 import com.example.ihonboarding.feature.login.data_source.remote.dto.TokenDto
-import com.example.ihonboarding.feature.login.data_source.remote.util.TokenDtoMapper
+import com.example.ihonboarding.feature.login.data_source.remote.network.AuthService
 import com.example.ihonboarding.util.ErrorCode
 import com.example.ihonboarding.util.NetworkException
 import kotlinx.coroutines.Dispatchers
@@ -17,10 +15,12 @@ class AuthRemoteDataSourceImpl @Inject constructor(private val authService: Auth
         try {
             val res = authService.login(AuthReqDto(username, password))
 
-            if (res.isSuccessful) return@withContext res.body() as TokenDto
+            if (res.isSuccessful) {
+                return@withContext res.body() as TokenDto
+            }
             else throw NetworkException(res.message(), ErrorCode.getErrorCode(res.code()))
         } catch (e: Exception) {
-            throw NetworkException(e.localizedMessage.toString(), ErrorCode.UNKNOWN_ERROR)
+            throw NetworkException(e.localizedMessage, ErrorCode.UNKNOWN_ERROR)
         }
     }
 
@@ -31,7 +31,7 @@ class AuthRemoteDataSourceImpl @Inject constructor(private val authService: Auth
             if (res.isSuccessful) return@withContext res.body() as TokenDto
             else throw NetworkException(res.message(), ErrorCode.UNKNOWN_ERROR)
         } catch (e: Exception) {
-            throw NetworkException(e.localizedMessage.toString(), ErrorCode.UNKNOWN_ERROR)
+            throw NetworkException(e.localizedMessage, ErrorCode.UNKNOWN_ERROR)
         }
     }
 

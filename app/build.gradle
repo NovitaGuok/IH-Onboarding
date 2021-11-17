@@ -42,7 +42,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             resValue "string", "app_version", "${defaultConfig.versionName}"
-            buildConfigField "String", "BASE_URL", '"https://icehousecorp.com/careers/"'
+            buildConfigField "String", "BASE_URL", '"http://34.121.153.157/"'
         }
         debug {
             versionNameSuffix ".debug"

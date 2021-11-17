@@ -4,7 +4,6 @@ import com.example.ihonboarding.domain.login.model.Token
 import com.example.ihonboarding.domain.login.repository.AuthRepository
 import com.example.ihonboarding.feature.login.data_source.local.SessionManager
 import com.example.ihonboarding.feature.login.data_source.remote.AuthRemoteDataSource
-import com.example.ihonboarding.feature.login.data_source.remote.dto.AuthReqDto
 import com.example.ihonboarding.feature.login.data_source.remote.util.TokenDtoMapper
 import java.text.SimpleDateFormat
 import java.util.*
