@@ -11,18 +11,17 @@ import javax.inject.Inject
 
 class AuthRemoteDataSourceImpl @Inject constructor(private val authService: AuthService) :
     AuthRemoteDataSource {
-    override suspend fun login(username: String, password: String): TokenDto = withContext(Dispatchers.IO) {
-        try {
-            val res = authService.login(AuthReqDto(username, password))
+    override suspend fun login(username: String, password: String): TokenDto =
+        withContext(Dispatchers.IO) {
+            try {
+                val res = authService.login(AuthReqDto(username, password))
 
-            if (res.isSuccessful) {
-                return@withContext res.body() as TokenDto
+                if (res.isSuccessful) return@withContext res.body() as TokenDto
+                else throw NetworkException(res.message(), ErrorCode.getErrorCode(res.code()))
+            } catch (e: Exception) {
+                throw NetworkException(e.localizedMessage, ErrorCode.UNKNOWN_ERROR)
             }
-            else throw NetworkException(res.message(), ErrorCode.getErrorCode(res.code()))
-        } catch (e: Exception) {
-            throw NetworkException(e.localizedMessage, ErrorCode.UNKNOWN_ERROR)
         }
-    }
 
     override suspend fun refreshToken(): TokenDto = withContext(Dispatchers.IO) {
         try {
