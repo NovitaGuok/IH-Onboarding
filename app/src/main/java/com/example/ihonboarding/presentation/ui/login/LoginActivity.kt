@@ -35,15 +35,6 @@ class LoginActivity :  ComponentActivity() {
                 }
             }
         }
-
-
-//        newsListViewModel = ViewModelProvider(this).get(NewsListViewModel::class.java)
-//        val responseLiveData = newsListViewModel.getNews()
-//        responseLiveData.observe(this, { news ->
-//            news?.forEach {
-//                Timber.d(it.toString())
-//            }
-//        })
     }
 
 }

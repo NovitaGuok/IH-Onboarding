@@ -1,5 +1,6 @@
 package com.example.ihonboarding.presentation.screen.login
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -45,7 +46,9 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
     val state = viewModel.state.value
 
     Column(
-        modifier = Modifier.padding(20.dp).fillMaxHeight(),
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         val modifier = Modifier.fillMaxWidth()
@@ -109,7 +112,7 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
         Button(
             onClick = {
                 if (viewModel.checkValidity()) viewModel.login()
-
+                else Log.d("lol", viewModel.password.toString())
             },
             colors = ButtonDefaults.textButtonColors(
                 backgroundColor = MaterialTheme.colors.primaryVariant
@@ -130,11 +133,11 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
                     Toast.LENGTH_SHORT
                 ).show()
             }
-            else -> {
+            is Resource.Error -> {
                 viewModel.resetState()
                 Toast.makeText(
                     LocalContext.current,
-                    "fdsafsda....",
+                    viewModel.password.value,
                     Toast.LENGTH_SHORT
                 ).show()
             }
