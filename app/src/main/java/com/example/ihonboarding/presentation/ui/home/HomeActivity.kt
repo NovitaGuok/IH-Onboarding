@@ -19,15 +19,18 @@ class HomeActivity :  ComponentActivity() {
 
     val newsListViewModel: NewsListViewModel by viewModels()
 
-    @SuppressLint("TimberArgCount")
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-
-//        (application as Injector).createNewsSubcomponent().inject(this)
-        newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
-        val responseLiveData = newsViewModel.getNews()
-        responseLiveData.observe(this, Observer {
-            Timber.i("TAG", it.toString())
-        })
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            IHOnboardingTheme {
+                Surface(color = MaterialTheme.colors.secondary) {
+                    val navController = rememberNavController()
+//                    NavHost(navController = navController, startDestination = "${ Route.HomeScreen }")
+                    Log.d(TAG, newsListViewModel.newsState.value.toString())
+                    HomePage(navController = navController)
+                }
+            }
+        }
     }
+
 }

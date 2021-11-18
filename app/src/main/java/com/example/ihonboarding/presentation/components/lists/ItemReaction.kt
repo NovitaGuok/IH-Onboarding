@@ -32,5 +32,5 @@ fun Reaction(img: ImageVector, desc: String, num: Int) {
             Text(text = num.toString(), style = bottomTextStyle)
         }
     }
-    Spacer(modifier = androidx.compose.ui.Modifier.padding(reactionSpaceSize))
+    Spacer(modifier = Modifier.padding(reactionSpaceSize))
 }
