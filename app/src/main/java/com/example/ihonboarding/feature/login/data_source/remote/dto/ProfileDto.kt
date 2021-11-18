@@ -7,13 +7,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ProfileDto(
     @SerialName("bio")
-    val bio: String = "",
+    val bio: String,
     @SerialName("name")
-    val name: String = "",
+    val name: String,
     @SerialName("picture")
-    val picture: String = "",
+    val picture: String,
     @SerialName("username")
-    val username: String = "",
+    val username: String,
     @SerialName("web")
-    val web: String = ""
+    val web: String
 )

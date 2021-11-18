@@ -1,6 +1,8 @@
 package com.example.ihonboarding.di
 
 import com.example.ihonboarding.domain.login.repository.AuthRepository
+import com.example.ihonboarding.domain.login.repository.ProfileRepository
+import com.example.ihonboarding.domain.login.use_case.GetProfileUseCase
 import com.example.ihonboarding.domain.login.use_case.LoginUseCase
 import com.example.ihonboarding.domain.login.use_case.RefreshTokenUseCase
 import dagger.Module
@@ -19,5 +21,10 @@ class UseCaseModule {
     @Provides
     fun provideRefreshTokenUseCase(authRepository: AuthRepository): RefreshTokenUseCase {
         return RefreshTokenUseCase(authRepository)
+    }
+
+    @Provides
+    fun provideGetProfileUseCase(profileRepository: ProfileRepository): GetProfileUseCase {
+        return GetProfileUseCase(profileRepository)
     }
 }

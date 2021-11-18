@@ -31,7 +31,7 @@ class SessionManagerImpl @Inject constructor(private val context: Context) : Ses
 
     override fun saveSession(token: String, expiredAt: String) {
         return prefs.edit {
-            putString("tpken", token)
+            putString("token", token)
             putString("exp", expiredAt)
         }
     }

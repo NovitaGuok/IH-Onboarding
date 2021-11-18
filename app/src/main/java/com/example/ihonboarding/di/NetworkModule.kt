@@ -3,6 +3,7 @@ package com.example.ihonboarding.di
 import com.example.ihonboarding.BuildConfig
 import com.example.ihonboarding.feature.login.data_source.remote.network.AuthInterceptor
 import com.example.ihonboarding.feature.login.data_source.remote.network.AuthService
+import com.example.ihonboarding.feature.login.data_source.remote.network.ProfileService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -51,5 +52,11 @@ class NetworkModule {
     @Provides
     fun provideAuthService(retrofit: Retrofit): AuthService {
         return retrofit.create(AuthService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProfileService(retrofit: Retrofit): ProfileService {
+        return retrofit.create(ProfileService::class.java)
     }
 }
