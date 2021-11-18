@@ -1,6 +1,12 @@
 package com.example.ihonboarding.di
 
 import android.content.Context
+import com.example.ihonboarding.feature.home.data_source.local.NewsLocalDataSource
+import com.example.ihonboarding.feature.home.data_source.local.NewsLocalDataSourceImpl
+import com.example.ihonboarding.feature.home.data_source.local.dao.NewsDao
+import com.example.ihonboarding.feature.home.data_source.remote.NewsRemoteDataSource
+import com.example.ihonboarding.feature.home.data_source.remote.NewsRemoteDataSourceImpl
+import com.example.ihonboarding.feature.home.data_source.remote.api.NewsService
 import com.example.ihonboarding.feature.login.data_source.local.ProfileLocalDataSource
 import com.example.ihonboarding.feature.login.data_source.local.ProfileLocalDataSourceImpl
 import com.example.ihonboarding.feature.login.data_source.local.SessionManager
@@ -39,5 +45,19 @@ class DataSourceModule {
     @Provides
     fun provideProfileLocalDataSource(profileDao: ProfileDao): ProfileLocalDataSource {
         return ProfileLocalDataSourceImpl(profileDao)
+    }
+
+    @Provides
+    fun provideNewsRemoteDataSource(
+        newsService: NewsService,
+    ): NewsRemoteDataSource {
+        return NewsRemoteDataSourceImpl(newsService)
+    }
+
+    @Provides
+    fun provideNewsLocalDataSource(
+        newsDao: NewsDao
+    ): NewsLocalDataSource {
+        return NewsLocalDataSourceImpl(newsDao)
     }
 }

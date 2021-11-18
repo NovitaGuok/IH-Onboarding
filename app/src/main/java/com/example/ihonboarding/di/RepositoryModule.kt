@@ -26,20 +26,6 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {
     @Provides
-    fun provideNewsRemoteDataSource(
-        newsService: NewsService
-    ): NewsRemoteDataSource {
-        return NewsRemoteDataSourceImpl(newsService)
-    }
-
-    @Provides
-    fun provideNewsLocalDataSource(
-        newsDao: NewsDao
-    ): NewsLocalDataSource {
-        return NewsLocalDataSourceImpl(newsDao)
-    }
-
-    @Provides
     fun provideNewsRepository(
         newsRemoteDataSource: NewsRemoteDataSource,
         newsLocalDataSource: NewsLocalDataSource
@@ -50,7 +36,7 @@ class RepositoryModule {
     @Provides
     fun provideAuthRepository(
         authRemoteDataSource: AuthRemoteDataSource,
-        sessionManager: SessionManager
+        sessionManager: SessionManager,
     ): AuthRepository {
         return AuthRepositoryImpl(authRemoteDataSource, sessionManager)
     }
