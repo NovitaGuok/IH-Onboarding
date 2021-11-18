@@ -2,6 +2,8 @@ package com.example.ihonboarding.di
 
 import com.example.ihonboarding.domain.home.repository.NewsRepository
 import com.example.ihonboarding.domain.home.use_case.GetNewsUseCase
+import com.example.ihonboarding.domain.login.repository.AuthRepository
+import com.example.ihonboarding.domain.login.repository.ProfileRepository
 import com.example.ihonboarding.feature.home.data_source.local.NewsLocalDataSource
 import com.example.ihonboarding.feature.home.data_source.local.NewsLocalDataSourceImpl
 import com.example.ihonboarding.feature.home.data_source.local.dao.NewsDao
