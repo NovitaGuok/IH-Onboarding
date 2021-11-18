@@ -143,7 +143,7 @@ dependencies {
     // Security
     implementation "androidx.security:security-crypto:1.0.0"
     implementation "androidx.security:security-identity-credential:1.0.0-alpha03" // For Identity Credential APIs
-    implementation "androidx.security:security-app-authenticator:1.0.0-alpha02"   // For App Authentication APIs
+    implementation "androidx.security:security-app-authenticator:1.0.0-alpha02"   // For IhOnboardingApp Authentication APIs
 }
 
 kapt {
