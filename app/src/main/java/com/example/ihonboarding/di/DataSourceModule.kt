@@ -50,8 +50,9 @@ class DataSourceModule {
     @Provides
     fun provideNewsRemoteDataSource(
         newsService: NewsService,
+        sessionManager: SessionManager
     ): NewsRemoteDataSource {
-        return NewsRemoteDataSourceImpl(newsService)
+        return NewsRemoteDataSourceImpl(newsService, sessionManager)
     }
 
     @Provides

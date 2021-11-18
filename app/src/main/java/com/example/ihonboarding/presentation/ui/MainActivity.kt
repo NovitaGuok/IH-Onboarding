@@ -1,9 +1,8 @@
-package com.example.ihonboarding.presentation.ui.login
+package com.example.ihonboarding.presentation.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -14,13 +13,10 @@ import com.example.ihonboarding.presentation.Route
 import com.example.ihonboarding.presentation.screen.home.HomePage
 import com.example.ihonboarding.presentation.screen.login.LoginPage
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
-import com.example.ihonboarding.presentation.viewmodel.login.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginActivity : ComponentActivity() {
-
-    val loginViewModel: LoginViewModel by viewModels()
+class MainActivity : ComponentActivity() {
 
     @ExperimentalComposeUiApi
     override fun onCreate(savedInstanceState: Bundle?) {
