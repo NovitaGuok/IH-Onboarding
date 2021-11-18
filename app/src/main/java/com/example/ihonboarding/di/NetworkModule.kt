@@ -1,9 +1,7 @@
 package com.example.ihonboarding.di
 
 import com.example.ihonboarding.BuildConfig
-import com.example.ihonboarding.feature.login.data_source.remote.network.AuthInterceptor
-import com.example.ihonboarding.feature.login.data_source.remote.network.AuthService
-import com.example.ihonboarding.feature.login.data_source.remote.network.ProfileService
+import com.example.ihonboarding.feature.home.data_source.remote.api.NewsService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -14,7 +12,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -29,15 +26,8 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
-        val okHttp = OkHttpClient.Builder().addInterceptor(authInterceptor)
-            .connectTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS)
-
-        if (BuildConfig.DEBUG) {
-            okHttp.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-        }
-
-        return okHttp.build()
+    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
     }
 
     @Singleton
@@ -50,13 +40,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAuthService(retrofit: Retrofit): AuthService {
-        return retrofit.create(AuthService::class.java)
-    }
-
-    @Singleton
-    @Provides
-    fun provideProfileService(retrofit: Retrofit): ProfileService {
-        return retrofit.create(ProfileService::class.java)
+    fun provideNewsService(retrofit: Retrofit): NewsService {
+        return retrofit.create(NewsService::class.java)
     }
 }
