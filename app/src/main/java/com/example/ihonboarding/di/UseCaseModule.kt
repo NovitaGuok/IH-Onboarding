@@ -1,5 +1,7 @@
 package com.example.ihonboarding.di
 
+import com.example.ihonboarding.domain.home.repository.NewsRepository
+import com.example.ihonboarding.domain.home.use_case.GetNewsUseCase
 import com.example.ihonboarding.domain.login.repository.AuthRepository
 import com.example.ihonboarding.domain.login.repository.ProfileRepository
 import com.example.ihonboarding.domain.login.use_case.GetProfileUseCase
@@ -26,5 +28,10 @@ class UseCaseModule {
     @Provides
     fun provideGetProfileUseCase(profileRepository: ProfileRepository): GetProfileUseCase {
         return GetProfileUseCase(profileRepository)
+    }
+
+    @Provides
+    fun provideGetNewsUseCase(newsRepository: NewsRepository): GetNewsUseCase {
+        return GetNewsUseCase(newsRepository)
     }
 }

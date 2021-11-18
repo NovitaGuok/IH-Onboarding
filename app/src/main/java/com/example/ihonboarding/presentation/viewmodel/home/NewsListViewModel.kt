@@ -34,7 +34,7 @@ class NewsListViewModel
             _newsState.value = Resource.Success(data = res)
             Log.d("viewModel", res.toString())
         }.catch { e ->
-            _newsState.value = Resource.Error(e.localizedMessage.toString())
+            _newsState.value = Resource.Error(null, e.localizedMessage)
         }.launchIn(viewModelScope)
     }
 }
