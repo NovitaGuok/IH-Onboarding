@@ -1,6 +1,5 @@
 package com.example.ihonboarding.presentation.screen.home
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,7 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.ihonboarding.R
 import com.example.ihonboarding.domain.home.model.News
-import com.example.ihonboarding.presentation.components.headers.Profile
+import com.example.ihonboarding.presentation.components.header.Profile
 import com.example.ihonboarding.presentation.components.lists.CardTopic
 import com.example.ihonboarding.presentation.theme.DarkJungleGreen
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme

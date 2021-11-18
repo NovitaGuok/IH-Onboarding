@@ -5,6 +5,7 @@ import com.example.ihonboarding.domain.home.use_case.GetNewsUseCase
 import com.example.ihonboarding.domain.login.repository.AuthRepository
 import com.example.ihonboarding.domain.login.repository.ProfileRepository
 import com.example.ihonboarding.domain.login.use_case.GetProfileUseCase
+import com.example.ihonboarding.domain.login.use_case.IsLoggedInUseCase
 import com.example.ihonboarding.domain.login.use_case.LoginUseCase
 import com.example.ihonboarding.domain.login.use_case.RefreshTokenUseCase
 import dagger.Module
@@ -33,5 +34,10 @@ class UseCaseModule {
     @Provides
     fun provideGetNewsUseCase(newsRepository: NewsRepository): GetNewsUseCase {
         return GetNewsUseCase(newsRepository)
+    }
+
+    @Provides
+    fun provideIsLoggedInUseCase(authRepository: AuthRepository): IsLoggedInUseCase {
+        return IsLoggedInUseCase(authRepository)
     }
 }

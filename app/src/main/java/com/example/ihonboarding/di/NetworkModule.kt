@@ -2,6 +2,7 @@ package com.example.ihonboarding.di
 
 import com.example.ihonboarding.BuildConfig
 import com.example.ihonboarding.feature.home.data_source.remote.api.NewsService
+import com.example.ihonboarding.feature.login.data_source.remote.network.AuthService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -42,5 +43,11 @@ class NetworkModule {
     @Provides
     fun provideNewsService(retrofit: Retrofit): NewsService {
         return retrofit.create(NewsService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthService(retrofit: Retrofit): AuthService {
+        return retrofit.create(AuthService::class.java)
     }
 }
