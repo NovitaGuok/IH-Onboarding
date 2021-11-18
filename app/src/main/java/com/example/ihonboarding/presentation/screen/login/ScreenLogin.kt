@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.ihonboarding.R
+import com.example.ihonboarding.presentation.Route
 import com.example.ihonboarding.presentation.components.dialog.ErrorDialog
 import com.example.ihonboarding.presentation.theme.IHOnboardingTheme
 import com.example.ihonboarding.presentation.theme.Monsoon
@@ -103,6 +104,7 @@ fun LoginPage(navController: NavController, viewModel: LoginViewModel = hiltView
         Button(
             onClick = {
                 if (viewModel.checkValidity()) viewModel.login()
+                navController.navigate(Route.HomeScreen.route)
             },
             colors = ButtonDefaults.textButtonColors(
                 backgroundColor = MaterialTheme.colors.primaryVariant

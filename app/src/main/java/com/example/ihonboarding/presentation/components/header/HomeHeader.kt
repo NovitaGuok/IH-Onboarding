@@ -37,7 +37,7 @@ fun Profile(name: String, motto: String, url: String) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(R.drawable.razor),
+                    painter = painterResource(R.drawable.gogo),
                     contentDescription = stringResource(R.string.desc_profile_pic),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
