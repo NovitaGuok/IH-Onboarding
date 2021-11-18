@@ -29,6 +29,7 @@ class NewsListViewModel
     }
 
     private fun getNewsList() {
+        _newsState.value = Resource.Loading()
         getNewsUseCase.invoke().onEach { res ->
             _newsState.value = Resource.Success(data = res)
             Log.d("viewModel", res.toString())

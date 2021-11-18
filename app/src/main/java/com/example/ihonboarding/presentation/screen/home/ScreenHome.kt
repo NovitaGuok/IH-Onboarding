@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,9 +29,9 @@ import com.example.ihonboarding.util.Resource
 @Composable
 fun HomePage(
     navController: NavController,
-    viewModel: NewsListViewModel = hiltViewModel(),
+    newsViewModel: NewsListViewModel = hiltViewModel(),
 ) {
-    val state = viewModel.newsState.value
+    val state = newsViewModel.newsState.value
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             item {
@@ -62,11 +61,12 @@ fun HomePage(
             }
             when (state) {
                 is Resource.Success -> {
-                    Log.d("homeScreen", state.data.toString())
                     items(state.data as List<News>) { news ->
                         CardTopic(news = news)
                     }
                 }
+                is Resource.Error -> {}
+                else -> {}
             }
         }
     }
@@ -84,7 +84,6 @@ fun LoadingIndicator() {
 fun HomePagePreview() {
     IHOnboardingTheme {
         Surface(color = MaterialTheme.colors.secondary) {
-//            HomePage()
         }
     }
 }
