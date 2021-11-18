@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase) : ViewModel() {
-    private val _state: MutableState<Resource<Token>> = mutableStateOf(Resource.Loading())
+    private val _state: MutableState<Resource<Token>> = mutableStateOf(Resource.Init())
     val state: State<Resource<Token>> get() = _state
 
     private val _username = mutableStateOf("")
@@ -28,14 +28,6 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
 
     private val _passwordValidator = mutableStateOf(false)
     val passwordValidator get() = _passwordValidator
-
-    fun setUsername(username: String) {
-        _username.value = username
-    }
-
-    fun setPassword(password: String) {
-        _password.value = password
-    }
 
     fun login() {
         _state.value = Resource.Loading()
